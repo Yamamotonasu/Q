@@ -2,7 +2,8 @@
   .row
     .signup.col-md-5.col-md-offset-4.text-center
       h2.mt-5 新規ユーザー登録
-      = form_with model: @user, local: true do |f|
+      = form_with model: @user, url: signup_path, local: true do |f|
+        = render 'shared/error_messages'
         .form-group.mt-5
           = f.label :name
           = f.text_field :name, class: "form-control"
