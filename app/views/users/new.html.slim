@@ -1,16 +1,17 @@
 .container-fluid
   .row
     .signup.col-md-5.col-md-offset-4.text-center
-      h2.mt-5 新規ユーザー登録
-      = form_with model: @user, url: signup_path, local: true do |f|
+      h2.my-4 ユーザー登録
+      = form_with model: @user, local: true do |f|
         = render 'shared/error_messages'
-        .form-group.mt-5
-          = f.label :name
-          = f.text_field :name, class: "form-control"
-        .form-group.mt-5
-          = f.label :password
-          = f.text_field :password, class: "form-control"
-        .form-group.mt-5
-          = f.label :password_confirmation
-          = f.text_field :password_confirmation, class: "form-control"
-        =f.submit '新規登録',  class: 'btn-gradient-3d-simple mt-5 mb-5'
+        .card.mb-5.signup-body
+          .form-group.mt-5
+            = f.label :name
+            = f.text_field :name, class: "form-control"
+          .form-group.mt-5
+            = f.label :password
+            = f.text_field :password, class: "form-control"
+          .form-group.mt-5
+            = f.label :password_confirmation
+            = f.text_field :password_confirmation, class: "form-control"
+          =f.submit '新規登録',  class: 'btn-gradient-3d-simple mt-5 mb-5'

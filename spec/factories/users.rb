@@ -10,8 +10,8 @@
 #
 
 FactoryBot.define do
-  factory :user do
-    name { "MyString" }
-    password_digest { "MyString" }
-  end
+  # factory :user do
+  #   name "tester"
+  #   password_digest "testtesttest"
+  # end
 end

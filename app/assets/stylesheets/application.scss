@@ -12,13 +12,8 @@ textarea {
 
 header {
   margin: 0 auto;
-  .logo {
-
-  }
-  ul {
-    li {
-      margin:0 20px;
-    }
+  li {
+    margin: 0 20px;
   }
 }
 
@@ -72,6 +67,10 @@ footer {
 /* 登録画面 */
 .signup {
   margin: 0 auto;
+
+  .signup-body {
+    padding: 30px;
+  }
 
   .btn-gradient-3d-simple {
     display: inline-block;
