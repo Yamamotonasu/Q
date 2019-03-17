@@ -1,6 +1,16 @@
 ---
 ja:
   activerecord:
+    model:
+      user: ユーザー
+    attributes:
+      user:
+        id: ID
+        name: ユーザーネーム
+        created_at: 登録日時
+        updated_at: 更新日時
+        password: パスワード
+        password_confirmation: もう一度パスワードを入力
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
