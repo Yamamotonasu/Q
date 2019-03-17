@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+
   def show
     @user = User.find(params[:id])
   end
@@ -11,6 +13,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      log_in @user
+      flash[:notice] = "新規登録しました！次に質問を投稿してみませんか？"
       redirect_to @user
     else
       render 'new'
@@ -20,6 +24,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :password)
+      params.require(:user).permit(:name, :password, :password_confirmation)
     end
 end

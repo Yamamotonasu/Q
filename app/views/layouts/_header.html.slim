@@ -2,5 +2,9 @@ header
   .navbar.navbar-dark.bg-dark.navbar-fixed-top
     = link_to 'QueA', root_path, class: 'logo navbar-brand'
     ul.nav.navbar-nav.flex-row.justify-content-end
-      li.nav-item= link_to 'ログイン', '#', class: 'nav-link'
-      li.nav-item= link_to '#', '#', class: 'nav-link'
+      - if logged_in?
+        li.nav-item= link_to 'ユーザーページ', current_user, class: 'nav-link'
+        li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+      - else
+        li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+        li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link'
