@@ -1,0 +1,14 @@
+.col-md-6.offset-md-3
+  = form_for(:session, url: login_path) do |f|
+    .card.mt-5.login-form
+      = render 'shared/flash_messages'
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :password
+        = f.text_field :password, class: 'form-control'
+      = f.submit 'ログイン', class: 'btn btn-primary btn-block'
+
+      p 会員登録がまだの方はコチラ
+      = link_to '新規登録', new_user_path, class: 'btn btn-primary'
