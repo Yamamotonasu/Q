@@ -1,0 +1,21 @@
+.col-md-6.offset-md-3
+  h2.text-center.my-4 投稿ページ
+  = render 'shared/error_messages', obj: @question
+  = form_with model: [@user, @question], url: user_questions_trade_path,  local: true do |f|
+    .text-center.card.post-field.mb-5
+      .form-group
+        = f.label :content
+        = f.text_area :content, rows: 7, class: "form-control"
+      .form-group.mt-3
+        = f.label :num_one
+        = f.text_field :num_one, class: "form-control choice"
+      .form-group.mt-3
+        = f.label :num_two
+        = f.text_field :num_two, class: "form-control choice"
+      .form-group.mt-3
+        = f.label :num_three
+        = f.text_field :num_three, class: "form-control choice"
+      .form-group.mt-3.mb-4
+        = f.label :num_four
+        = f.text_field :num_four, class: "form-control choice"
+      = f.submit "この内容で投稿する", class: "btn btn-primary"

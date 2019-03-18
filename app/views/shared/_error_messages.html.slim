@@ -1,5 +1,5 @@
-- if @user.errors.any?
+- if obj.errors.any?
   #error_explanation
     ul
-      - @user.errors.full_messages.each do |msg|
+      - obj.errors.full_messages.each do |msg|
         li.new-errors.mt-2 = msg

@@ -5,12 +5,14 @@
 #  id              :bigint(8)        not null, primary key
 #  name            :string           not null
 #  password_digest :string
+#  remember_digest :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 class User < ApplicationRecord
   attr_accessor :remember_token
+  has_many :questions, dependent: :destroy
   validates :name, presence: true, null: false, uniqueness: true,
             length: { maximu: 15, minimum: 4 }
   validates :password, presence: true, length: { minimum: 6 }
