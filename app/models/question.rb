@@ -24,6 +24,7 @@
 
 class Question < ApplicationRecord
   belongs_to :user
+  has_many :answers
   validates :user_id, presence: true
   validates :content, presence: true, length: { minimum: 4, maximum: 200 }
   validates :num_one, presence: true, length: { maximum: 50 }

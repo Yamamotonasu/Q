@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'answers/result'
   # get 'questions/new'
   # get 'questions/create'
   # get 'questions/trade'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     get 'questions/new', to: 'questions#new'
     get 'questions/trade', to: 'questions#trade'
     post 'questions/trade', to: 'questions#create'
+    post 'answer/result', to: 'answers#create'
     resources :questions
   end
   # get 'questions/trade', to: 'questions#trade'

@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   def trade
-    # @question = current_user.questions.find(id: )
+    @target_questions = Question.where.not(user_id: current_user.id).order("RANDOM()").limit(5)
   end
 
   private
