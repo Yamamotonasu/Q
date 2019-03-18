@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in(user)
       flash[:notice] = "ログインしました。ようこそ、#{user.name}さん。"
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to user
     else
       flash.now[:alert] = "無効な名前かパスワードです。"
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    log_out if logged_in?
     flash[:notice] = "ログアウトしました。"
     redirect_to root_path
   end
