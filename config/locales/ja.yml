@@ -11,6 +11,13 @@ ja:
         updated_at: 更新日時
         password: パスワード
         password_confirmation: もう一度パスワードを入力
+      question:
+        content: 質問の内容
+        num_one: こたえ1
+        num_two: こたえ2
+        num_three: こたえ3
+        num_four: こたえ4
+        user_id: ユーザーID
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

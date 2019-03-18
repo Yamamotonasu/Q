@@ -3,7 +3,7 @@ header
     = link_to 'QueA', root_path, class: 'logo navbar-brand'
     ul.nav.navbar-nav.flex-row.justify-content-end
       - if logged_in?
-        li.nav-item= link_to 'ユーザーページ', current_user, class: 'nav-link'
+        li.nav-item= link_to "#{current_user.name}", current_user, class: 'nav-link'
         li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
       - else
         li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
