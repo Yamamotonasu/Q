@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   resources :users do
+    get 'questions/new', to: 'questions#new'
     get 'questions/trade', to: 'questions#trade'
     post 'questions/trade', to: 'questions#create'
     resources :questions

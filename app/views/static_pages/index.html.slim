@@ -2,4 +2,10 @@
   .mt-5= render 'shared/flash_messages'
   p.border.rounded.bg-gradient-primary.describe QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。名前とパスワードを登録するだけで質問を投稿する事が出来ます。
   - unless logged_in?
-    = link_to 'ユーザー登録する！', new_user_path, class:'btn-gradient-3d-simple mt-5'
+    p.mt-5.mb-3.card-header まだユーザー登録がお済みでない方
+    = link_to 'ユーザー登録してみる', new_user_path, class:'btn-gradient-3d-simple my-2'
+    p.mt-3.mb-3.card-header ユーザー登録がお済みの方
+    = link_to 'ログインする', login_path, class: 'btn-gradient-3d-simple my-2 mb-5'
+  - else
+    p.mt-5.mb-3.card-header #{current_user.name}さん、質問を投稿してみませんか？
+    = link_to '質問を投稿する！', "/users/#{current_user.id}/questions/new", class: 'btn-gradient-3d-simple my-2 mb-5'

@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   def trade
-    @question = current_user.questions.find(id: params[:question][:id])
+    # @question = current_user.questions.find(id: )
   end
 
   private
