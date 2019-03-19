@@ -3,10 +3,10 @@
 # Table name: answers
 #
 #  id             :bigint(8)        not null, primary key
-#  target         :boolean          not null
+#  answer_result  :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  answer_post_id :integer          not null
+#  answer_post_id :integer
 #  question_id    :bigint(8)
 #  user_id        :bigint(8)
 #
