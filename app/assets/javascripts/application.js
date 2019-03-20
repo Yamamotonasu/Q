@@ -17,3 +17,30 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function(){
+  $("#submit_one").click(function(){
+    var one = $(this).text();
+    var question_id = `${targets.id}`;
+    $.ajax({
+      type:'post',
+      url: '/ajax_1',
+      data: {keyword: `${one}`, targets_id: `${question_id}`},
+      datatype: 'json'
+    })
+    .done(function(){
+      //通信に成功した時の処理
+      $(this).parent().slideUp("fast");
+      })
+    .fail(function(){
+      alert('通信に失敗しました。');
+    });
+  });
+});
+
+
+$(function(){
+  $("#submit_one").click(function(){
+    $(this).parent().slideUp("fast");
+  })
+});
