@@ -26,9 +26,10 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :answers
   validates :user_id, presence: true
-  validates :content, presence: true, length: { minimum: 4, maximum: 200 }
+  validates :content, presence: true, length: { maximum: 200 }
   validates :num_one, presence: true, length: { maximum: 50 }
   validates :num_two, presence: true, length: { maximum: 50 }
-  default_scope -> { order(created_at: :desc) }
-  # validates_uniqueness_of :question_id, scope: :user_id
+
+  scope :find_nil, -> {left_joins(:answers).where(answers: {user_id: nil})}
+  scope :find_other, -> (user) {left_joins(:answers).where.not(answers: {user_id: user.id})}
 end

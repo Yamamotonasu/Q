@@ -10,7 +10,8 @@ class AnswersController < ApplicationController
     @answer.attributes = {
       user_id: current_user.id,
       answer_result: params[:choice],
-      question_id: params[:question_id]
+      question_id: params[:question_id],
+      answer_post_id: current_user.questions.first.id
     }
     @answer.save
     if @answer.answer_result.present?
@@ -21,11 +22,5 @@ class AnswersController < ApplicationController
     else
       render :template => "/users/#{current_user.id}/questions/trade"
     end
-  end
-
-  private
-
-  def answer_params
-    params.require(:answer).permit(:answer_result)
   end
 end

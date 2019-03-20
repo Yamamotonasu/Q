@@ -1,6 +1,7 @@
 .col-md-6.offset-md-3
   .mt-5 = render 'shared/flash_messages'
-  h3.text-center.result.card.mb-5 #{@target_questions.count}件の質問を抽出しました。
+  = "#{@tarde}"
+  h3.text-center.result.card.mb-5 #{@target_questions.count}件の質問が見つかりました。
   - @target_questions.each_with_index do |targets, i|
     = form_with model: Answer.new, method: :post do |f|
       .card.mb-5.text-center[id="answer_#{i}"]
@@ -13,7 +14,7 @@
           = f.submit "#{targets.num_three}", class: "btn-flat-double-border mb-3", name: "choice"
         -if targets.num_four.present?
           = f.submit "#{targets.num_four}", class:"btn-flat-double-border mb-3", name: "choice"
-
+  = link_to "あなたのページへ戻る", current_user , class: "btn btn-primary btn-block mb-5"
 
 
 
