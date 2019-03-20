@@ -1,0 +1,12 @@
+- @target_questions.each_with_index do |targets, i|
+  = form_with model: Answer.new, method: :post do |f|
+    .card.mb-5.text-center[id="answer_#{i}"]
+      .card-header= simple_format targets.content
+      = f.hidden_field '', name: "question_id", value: targets.id
+      = f.hidden_field '', name: "answer_id", value: i
+      = f.submit "#{targets.num_one}", class: "btn-flat-double-border my-3", name: "choice"
+      = f.submit "#{targets.num_two}", class: "btn-flat-double-border mb-3", name: "choice"
+      -if targets.num_three.present?
+        = f.submit "#{targets.num_three}", class: "btn-flat-double-border mb-3", name: "choice"
+      -if targets.num_four.present?
+        = f.submit "#{targets.num_four}", class:"btn-flat-double-border mb-3", name: "choice"

@@ -11,7 +11,8 @@ class AnswersController < ApplicationController
       user_id: current_user.id,
       answer_result: params[:choice],
       question_id: params[:question_id],
-      answer_post_id: current_user.questions.first.id
+      answer_post_id: current_user.questions.first.id,
+      target: true
     }
     @answer.save
     if @answer.answer_result.present?
