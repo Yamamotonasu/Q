@@ -1,7 +1,8 @@
 .col-md-3
   = current_user.name
 .col-md-4.offset-md-2
+  = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn btn-primary btn-block mt-5"
   .mt-5 = render 'shared/flash_messages'
   h2.mt-5.text-center 質問を投稿してみませんか？
-  = link_to '質問を投稿する', new_user_question_path(@user), class: "btn btn-primary btn-block mt-5"
+  = link_to '質問を投稿する', new_user_question_path(current_user), class: "btn btn-primary btn-block mt-5"
 

@@ -4,7 +4,16 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = current_user.questions.build(question_params)
+    # targetは1ユーザーにつき1つの質問しかtrueにならない事。
+    target_true = Question.where(user_id: current_user.id).where(target: true)
+    if target_true
+      target_true.update(target: false)
+    end
+    @question = current_user.questions.new(question_params)
+    # 新規投稿は必ずtarget:をtrueにする
+    @question.attributes = {
+      target: true
+    }
     if @question.save
       flash.now[:notice] = "投稿に成功しました！続いて質問をトレードしてみましょう！"
       redirect_to user_questions_trade_path
@@ -14,21 +23,10 @@ class QuestionsController < ApplicationController
   end
 
   def trade
-    @target_questions = Question.where.not(user_id: current_user).find_nil.or(Question.where.not(user_id: current_user).find_other(current_user)).order("RANDOM()").limit(5)
+    @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.or(Question.where.not(user_id: current_user).find_other(current_user)).order("RANDOM()").limit(5)
+  end
 
-    # 後々ActiveRecordでデータを取ってくるようにすること
-
-    # 自分の直前に投稿したデータのidを取ってくる
-    # @my_post_id = current_user.questions.first.id
-    # @target_questions = []
-    # qs = Question.where.not(user_id: current_user.id)
-    # qs.each do |q|
-    #   a = q.answers.find_by(user_id: current_user.id)
-    #   if a.blank?
-    #     @target_questions << q
-    #   end
-    # end
-    # return @target_questions
+  def apply
   end
 
   private

@@ -4,6 +4,7 @@
 #
 #  id             :bigint(8)        not null, primary key
 #  answer_result  :string           not null
+#  target         :boolean          default(FALSE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  answer_post_id :integer

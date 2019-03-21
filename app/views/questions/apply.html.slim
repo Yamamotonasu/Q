@@ -1,0 +1,5 @@
+.col-md-6.offset-md-3
+  .mt-5 = render 'shared/flash_messages'
+  h3.text-center.result.card.mb-5 #{@target_questions.count}件のトレード希望相手がいます。
+  = render '_trade_form.html.slim'
+  = link_to "あなたのページへ戻る", current_user , class: "btn btn-primary btn-block mb-5"

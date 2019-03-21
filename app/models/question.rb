@@ -8,6 +8,7 @@
 #  num_one    :string           not null
 #  num_three  :string
 #  num_two    :string           not null
+#  target     :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint(8)
@@ -25,6 +26,7 @@
 class Question < ApplicationRecord
   belongs_to :user
   has_many :answers
+  has_many :relations
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 200 }
   validates :num_one, presence: true, length: { maximum: 50 }

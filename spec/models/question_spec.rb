@@ -8,6 +8,7 @@
 #  num_one    :string           not null
 #  num_three  :string
 #  num_two    :string           not null
+#  target     :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint(8)

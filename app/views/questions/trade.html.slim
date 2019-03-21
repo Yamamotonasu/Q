@@ -1,31 +1,5 @@
 .col-md-6.offset-md-3
   .mt-5 = render 'shared/flash_messages'
-  = "#{@tarde}"
   h3.text-center.result.card.mb-5 #{@target_questions.count}件の質問が見つかりました。
-  - @target_questions.each_with_index do |targets, i|
-    = form_with model: Answer.new, method: :post do |f|
-      .card.mb-5.text-center[id="answer_#{i}"]
-        .card-header= simple_format targets.content
-        = f.hidden_field '', name: "question_id", value: targets.id
-        = f.hidden_field '', name: "answer_id", value: i
-        = f.submit "#{targets.num_one}", class: "btn-flat-double-border my-3", name: "choice"
-        = f.submit "#{targets.num_two}", class: "btn-flat-double-border mb-3", name: "choice"
-        -if targets.num_three.present?
-          = f.submit "#{targets.num_three}", class: "btn-flat-double-border mb-3", name: "choice"
-        -if targets.num_four.present?
-          = f.submit "#{targets.num_four}", class:"btn-flat-double-border mb-3", name: "choice"
+  = render 'shared/trade_form'
   = link_to "あなたのページへ戻る", current_user , class: "btn btn-primary btn-block mb-5"
-
-
-
-
-
-    / .card.mb-5.text-center#answer_form[value="#{current_user.id}"]
-    /   .card-header= simple_format targets.content
-    /   .btn-flat-double-border.my-3.card-body#submit_one[value="#{targets.num_one}"]= targets.num_one
-    /   .btn-flat-double-border.mb-3#submit_two[value="#{targets.num_two}"]= targets.num_two
-    /   -if targets.num_three.present?
-    /     .btn-flat-double-border.mb-3#submit_three[value="#{targets.num_three}"] = targets.num_three
-    /   -if targets.num_four.present?
-    /     .btn-flat-double-border.mb-3#submit_four[value="#{targets.num_four}"] = targets.num_four
-
