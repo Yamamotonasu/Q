@@ -1,5 +1,20 @@
 @import 'bootstrap';
 
+.text_g {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Nunito', sans-serif;
+  color: transparent;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 2px rgba(204, 208, 212, 0.9),
+  0 15px 25px rgba(0, 0, 0, 0.3),
+  0 -2px 3px rgba(0, 0, 0, 0.1),
+  0 -5px 10px rgba(255, 255, 255, 0.5),
+  0 5px 10px rgba(0, 0, 0, 0.3),
+  0 3px 4px rgba(255, 255, 255, 0.2),
+  0 0 20px rgba(255, 255, 255, 0.45);
+}
+
 
 body {
   font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
@@ -21,7 +36,57 @@ header {
 /* ヘッダー */
 header {
   width: 100%;
-}
+  .text_logo {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+    color: transparent;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 2px rgba(204, 208, 212, 0.9),
+    0 15px 25px rgba(0, 0, 0, 0.3),
+    0 -2px 3px rgba(0, 0, 0, 0.1),
+    0 -5px 10px rgba(255, 255, 255, 0.5),
+    0 5px 10px rgba(0, 0, 0, 0.3),
+    0 3px 4px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.45);
+  }
+  .text_g {
+      text-align: center;
+      text-transform: uppercase;
+      font-family: 'Nunito', sans-serif;
+      color: transparent;
+      letter-spacing: 0.1em;
+      text-shadow:
+              0 0 2px rgba(204, 208, 212,0.9),
+              0 15px 25px rgba(0, 0, 0, 0.3),
+              0 -2px 3px rgba(0, 0, 0, 0.1),
+              0 -5px 10px rgba(255, 255, 255, 0.5),
+              0 5px 10px rgba(0, 0, 0, 0.3),
+              0 3px 4px rgba(255, 255, 255, 0.2),
+              0 0 20px rgba(255, 255, 255, 0.45);
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .text_g::after {
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background: #333;
+      opacity: 0;
+      visibility: hidden;
+      transition: .3s;
+    }
+    .text_g:hover::after {
+      bottom: -4px;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
 
 /* トップ画面 */
 
@@ -56,7 +121,35 @@ header {
     width: 50%;
     margin: 0 auto;
   }
+
+
+  .btn-hov {
+    position: relative;
+    display: inline-block;
+    font-size: 25px;
+    padding: 0.25em 0;
+    text-decoration: none;
+    color: lightslategrey;
+  }
+
+  .btn-hov:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 4px;
+    top:100%;
+    left: 0;
+    border-radius: 3px;
+    background: lightslategray;
+    transition: .2s;
+  }
+
+  .btn-hov:hover:before {
+    top: -webkit-calc(100% - 3px);
+    top: calc(100% - 3px);
+  }
 }
+
 
 /* 登録画面 */
 .signup {

@@ -13,7 +13,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
   has_many :questions, dependent: :destroy
-  has_many :answers
+  has_many :answers, dependent: :destroy
   # has_many :answered_questions, through: :answers, dependent: :destroy, class_name: "Question"
   validates :name, presence: true, null: false, uniqueness: true,
             length: { maximu: 15, minimum: 4 }
