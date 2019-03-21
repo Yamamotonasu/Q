@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     post '/questions/trade', to: 'questions#create'
     get '/questions/trade', to: 'questions#trade'
     resources :questions
-    post '/ajax/trade', to: 'answers#create'
   end
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
