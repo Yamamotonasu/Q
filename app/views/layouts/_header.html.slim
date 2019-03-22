@@ -1,10 +1,10 @@
 header
-  .navbar.navbar-dark.bg-dark.navbar-fixed-top
-    = link_to 'QueA', root_path, class: 'logo navbar-brand'
+  .navbar.navbar-dark.bg-white.navbar-fixed-top
+    = link_to 'QueA', root_path, class: 'logo navbar-brand text-muted text_logo'
     ul.nav.navbar-nav.flex-row.justify-content-end
       - if logged_in?
-        li.nav-item= link_to "#{current_user.name}", current_user, class: 'nav-link'
-        li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+        li.nav-item= link_to "#{current_user.name}", current_user, class: 'nav-link text-muted text_g'
+        li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link text-muted text_g'
       - else
-        li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
-        li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link'
+        li.nav-item= link_to 'ログイン', login_path, class: 'nav-link text-muted text_g'
+        li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link text-muted text_g'

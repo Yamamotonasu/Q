@@ -11,6 +11,7 @@ ja:
         updated_at: 更新日時
         password: パスワード
         password_confirmation: もう一度パスワードを入力
+        new_image: プロフィール画像
       question:
         content: 質問の内容
         num_one: こたえ1
