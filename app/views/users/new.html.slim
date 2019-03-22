@@ -1,7 +1,7 @@
 .container-fluid
   .row
     .signup.col-md-5.col-md-offset-4.text-center
-      h2.my-4 ユーザー登録
+      h4.my-4 新規登録
       = form_with model: @user, local: true do |f|
         = render 'shared/error_messages', obj: @user
         .card.mb-5.signup-body
@@ -14,4 +14,7 @@
           .form-group.mt-5
             = f.label :password_confirmation
             = f.text_field :password_confirmation, class: "form-control"
+          .form_group.mt-3
+            = f.label :new_image
+            = f.file_field :new_image, class: "form-control"
           =f.submit '新規登録',  class: 'btn-gradient-3d-simple mt-5 mb-5'

@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
     # 質問者のuser_idを抽出する為の処理
     your_answer = Question.find_by(id: params[:question_id], target: true)
     # relationsテーブルに答えてあげた相手のuser_idと自分の質問IDを格納する。
-    Relation.create!(answered_user_id: your_answer.user_id, question_id: my_true.id, target: true, user_id: current_user.id)
+    Relation.create!(answered_user_id: your_answer.user.id, question_id: my_true.id, target: true, user_id: current_user.id)
     @answer.save
     if @answer.answer_result.present?
       respond_to do |format|

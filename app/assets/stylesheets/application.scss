@@ -15,6 +15,26 @@
   0 0 20px rgba(255, 255, 255, 0.45);
 }
 
+.img-r {
+  border-radius: 50%;
+  width: 80%;
+}
+
+.word_btn {
+  display: block;
+  position: relative;
+  width: 80px;
+  padding: 0.8em;
+  text-align: center;
+  text-decoration: none;
+  color: #818181;
+}
+.word_btn:hover {
+  color: #1B1B1B;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 
 body {
   font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
@@ -215,6 +235,118 @@ header {
 }
 
 /* ユーザー詳細画面 */
+.cp_btn_blue {
+  position: relative;
+  display: block;
+  width: 300px;
+  padding: 0.8em;
+  text-align: center;
+  border: 3px solid #6795fd;
+  text-decoration: none;
+  outline: none;
+  transition: all .4s;
+  color: #6795fd;
+  margin: 0 auto;
+}
+.cp_btn_blue::before,
+.cp_btn_blue::after {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  bottom: -3px;
+  left: -3px;
+  z-index: 2;
+  content: '';
+  transition: all .4s;
+}
+.cp_btn_blue::before {
+  border-top: 3px solid mediumslateblue;
+  border-bottom: 3px solid mediumslateblue;
+  transform: scale(0, 1);
+}
+.cp_btn_blue::after {
+  border-right: 3px solid mediumslateblue;
+  border-left: 3px solid mediumslateblue;
+  transform: scale(1, 0);
+}
+.cp_btn_blue:hover {
+  color: mediumslateblue;
+  text-decoration: none;
+}
+.cp_btn_blue:hover::after,
+.cp_btn_blue:hover::before {
+  transform: scale(1);
+}
+
+.cp_btn {
+  position: relative;
+  display: block;
+  width: 300px;
+  padding: 0.8em;
+  text-align: center;
+  border: 3px solid lightsalmon;
+  text-decoration: none;
+  outline: none;
+  transition: all .4s;
+  color: lightsalmon;
+  margin: 0 auto;
+}
+.cp_btn::before,
+.cp_btn::after {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  bottom: -3px;
+  left: -3px;
+  z-index: 2;
+  content: '';
+  transition: all .4s;
+}
+.cp_btn::before {
+  border-top: 3px solid #FF5722;
+  border-bottom: 3px solid #FF5722;
+  transform: scale(0, 1);
+}
+.cp_btn::after {
+  border-right: 3px solid #FF5722;
+  border-left: 3px solid #FF5722;
+  transform: scale(1, 0);
+}
+.cp_btn:hover {
+  color: #FF5722;
+  text-decoration: none;
+}
+.cp_btn:hover::after,
+.cp_btn:hover::before {
+  transform: scale(1);
+}
+
+.to_index {
+  white-space: nowrap;
+  margin-left: 40px;
+}
+
+.btn-flat-double-border {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: double 4px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.btn-flat-double-border:hover {
+  background: #fffbef;
+}
+
+/* ユーザー投稿一覧画面 */
+.question_body {
+  width: 80%;
+  margin: 0 auto;
+}
 
 
 /* トレード画面 */
