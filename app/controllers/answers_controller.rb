@@ -1,6 +1,4 @@
 class AnswersController < ApplicationController
-  # createアクションのみ外部からのリクエストを許可する。
-  # protect_from_forgery :except => [:create]
   def result
   end
 

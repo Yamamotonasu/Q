@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/questions/new', to: 'questions#new'
     post '/questions/trade', to: 'questions#create'
     get '/questions/trade', to: 'questions#trade'
+    get '/questions/:id', to: 'questions#show'
     resources :questions
   end
   get '/login', to: 'sessions#new'
