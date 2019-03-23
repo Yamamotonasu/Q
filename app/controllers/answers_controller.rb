@@ -20,6 +20,7 @@ class AnswersController < ApplicationController
       # お互いの質問がtrueになった時に結果を反映させる為にtrueにする。
       target: true
     }
+    p @answer
     # 質問者のuser_idを抽出する為の処理
     your_answer = Question.find_by(id: params[:question_id], target: true)
     # relationsテーブルに答えてあげた相手のuser_idと自分の質問IDを格納する。

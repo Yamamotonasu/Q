@@ -1,12 +1,16 @@
 .col-md-3
   .card.mt-5.text-center
-    .pt-3= show_user_image @user
+    .pt-5= show_user_image @user
     h5.my-3.text_g.text-muted = current_user.name
     = link_to "あなたの投稿した質問", user_questions_path(current_user), class: "word_btn to_index"
 .col-md-9
+  .text-center
+    h5.mt-5 現在トレード中の質問
+    / .my_question.text-muted= simple_format @my_target_question.content
+    .my_question.little-hover= link_to @my_target_question.content, "/users/#{current_user.id}/questions/#{@my_target_question.id}", class: "text-muted delete-deco"
   - @my_questions.each do |my_question|
-    .card.mt-5.question_body.text-center
-      = link_to "#{my_question.content}", "/users/#{current_user.id}/questions/#{my_question.id}", class: "card-header text-dark"
+    .card.mt-5.question_body.text-center.little-hover
+      = link_to "#{my_question.content}", "/users/#{current_user.id}/questions/#{my_question.id}", class: "card-header text-dark delete-deco"
       h5.text-muted= my_question.num_one
       h5.text-muted= my_question.num_two
       - if my_question.num_three.present?

@@ -4,8 +4,24 @@
     h5.my-3.text_g.text-muted = current_user.name
     = link_to "あなたの投稿した質問", user_questions_path(current_user), class: "word_btn to_index"
 .col-md-9
-  = @my_question.content
-  p= @my_answer_one.count
-  p= @my_answer_two.count
-  p= @my_answer_three.count
-  p= @my_answer_four.count
+  .tab_wrap
+    input#tab1[type="radio" name="tab_btn" checked]
+    input#tab2[type="radio" name="tab_btn"]
+    input#tab3[type="radio" name="tab_btn"]
+    .tab_area
+      label.tab1_label[for="tab1"] 円グラフ
+      label.tab2_label[for="tab2"] 棒グラフ
+      label.tab3_label[for="tab3"] 投稿詳細
+    .panel_area
+      .tab_panel#panel1
+        .text-center= simple_format @my_question.content
+        .mt-5.text-center= graph_judge
+      .tab_panel#panel2
+        .text-center= simple_format @my_question.content
+        .mt-5.text-center= column_judge
+      .tab_panel#panel3
+        .text-center= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M')
+        p.pt-3
+          | 総回答数:
+          = total_count
+
