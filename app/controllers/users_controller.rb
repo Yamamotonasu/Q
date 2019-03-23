@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in @user
-      flash.now[:notice] = "新規登録しました！次に質問を投稿してみませんか？"
+      flash[:notice] = "新規登録しました！次に質問を投稿してみませんか？"
       redirect_to @user
     else
       render 'new'
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash.now[:notice] = "プロフィール画像を更新しました。"
+      flash[:notice] = "プロフィール画像を更新しました。"
       redirect_to @user
     else
       render :show

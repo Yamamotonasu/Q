@@ -6,7 +6,6 @@
 .col-md-9
   .text-center
     h5.mt-5 現在トレード中の質問
-    / .my_question.text-muted= simple_format @my_target_question.content
     .my_question.little-hover= link_to @my_target_question.content, "/users/#{current_user.id}/questions/#{@my_target_question.id}", class: "text-muted delete-deco"
   - @my_questions.each do |my_question|
     .card.mt-5.question_body.text-center.little-hover

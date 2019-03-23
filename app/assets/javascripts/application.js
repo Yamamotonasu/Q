@@ -20,3 +20,6 @@
 //= require chartkick
 //= require_tree .
 
+$(document).ready(function() {
+  $('.alert').fadeOut(4500);
+});

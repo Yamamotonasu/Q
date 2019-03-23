@@ -8,7 +8,6 @@
   .mt-5 = render 'shared/flash_messages'
   - if @apply_user.present?
     = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn-round cp_btn mt-5"
-  .mt-5 = render 'shared/flash_messages'
   .text-center
     h5.mb-3 現在トレード中の質問
     .my_question= simple_format @my_target_question.content

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post '/questions/trade', to: 'questions#create'
     get '/questions/trade', to: 'questions#trade'
     get '/questions/:id', to: 'questions#show'
+    post '/questions/:id', to: 'questions#enable'
     resources :questions
   end
   get '/login', to: 'sessions#new'

@@ -31,11 +31,20 @@ class QuestionsController < ApplicationController
       target: true
     }
     if @question.save
-      flash.now[:notice] = "投稿に成功しました！続いて質問をトレードしてみましょう！"
+      flash[:notice] = "投稿に成功しました！続いて質問をトレードしてみましょう！"
       redirect_to user_questions_trade_path
     else
       render 'new'
     end
+  end
+
+  def enable
+    true_question = Question.find_by(user_id: current_user.id, target: true)
+    true_question.update_attribute(:target, false)
+    my_question = Question.find_by(id: params[:id], target:false)
+    my_question.update_attribute(:target, true)
+    flash[:notice] = "トレードする質問を変更しました。"
+    redirect_to current_user
   end
 
   def trade
