@@ -23,7 +23,6 @@
 .word_btn {
   display: block;
   position: relative;
-  width: 80px;
   padding: 0.8em;
   text-align: center;
   text-decoration: none;
@@ -32,6 +31,19 @@
 .word_btn:hover {
   color: #1B1B1B;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.little-hover {
+  transition: all .5s;
+}
+.little-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+  opacity: 0.9;
+}
+
+.delete-deco:hover {
   text-decoration: none;
 }
 
@@ -322,8 +334,7 @@ header {
 }
 
 .to_index {
-  white-space: nowrap;
-  margin-left: 40px;
+  margin:0 auto;
 }
 
 .btn-flat-double-border {
@@ -340,6 +351,14 @@ header {
 
 .btn-flat-double-border:hover {
   background: #fffbef;
+}
+
+.my_question {
+  padding: 0.5em 1em;
+  border: double 5px #4ec4d3;
+  width: 50%;
+  margin: 20px auto;
+  font-size: 20px;
 }
 
 /* ユーザー投稿一覧画面 */
@@ -371,5 +390,95 @@ header {
 }
 
 .btn-flat-double-border:hover {
-  background: #fffbef;
+  background: #d7e9ea;
+}
+
+
+/* 投稿詳細画面 */
+@keyframes tabAnim{
+  0%{opacity:0;}
+  100%{opacity:1;}
+}
+
+.tab_wrap{
+  width:500px;
+  margin:45px auto;
+}
+
+input[type="radio"]{display:none;}
+.tab_area{
+  font-size:0;
+  margin:0 55px;
+}
+
+.tab_area label{
+  width:110px;
+  margin:0 5px;
+  display:inline-block;
+  padding:12px 0;
+  color:#999;
+  background:#ddd;
+  text-align:center;
+  font-size:13px;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+  cursor:pointer;
+  transition:ease 0.2s opacity;
+}
+
+.tab_area label:hover{
+  opacity:0.5;
+}
+
+.tab_panel{
+  width:100%;
+  opacity:0;
+  padding:80px 0;
+  display:none;
+}
+
+.tab_panel p{
+  font-size:14px;
+  letter-spacing:1px;
+  text-align:center;
+}
+
+.panel_area{
+  background:#ffffff;
+  border-bottom-right-radius:10px;
+  border-bottom-left-radius:10px;
+  border-top:8px solid #d7e9ea;
+}
+
+#tab1:checked ~ .tab_area .tab1_label{
+  background:#67ceff;
+  color:#000;
+}
+
+#tab1:checked ~ .panel_area #panel1{
+  display:block;
+  animation:tabAnim ease 0.6s forwards;
+  -ms-animation:tabAnim ease 0.6s forwards;
+}
+
+#tab2:checked ~ .tab_area .tab2_label{
+  background:#67ceff;
+  color:#000;
+}
+
+#tab2:checked ~ .panel_area #panel2{
+  display:block;
+  animation:tabAnim ease 0.6s forwards;
+  -ms-animation:tabAnim ease 0.6s forwards;
+}
+
+#tab3:checked ~ .tab_area .tab3_label{
+  background:#67ceff;
+  color:#000;
+}
+
+#tab3:checked ~ .panel_area #panel3{
+  display:block;
+  animation:tabAnim ease 0.6s forwards;
+  -ms-animation:tabAnim ease 0.6s forwards;
 }

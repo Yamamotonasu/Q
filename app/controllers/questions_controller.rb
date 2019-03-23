@@ -3,10 +3,20 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
+  def show
+    @user = User.find_by(id: current_user.id)
+    @my_question = Question.find_by(id: params[:id])
+    #回答結果を集計する為の処理
+    @my_answer_one = Answer.where(answer_result: @my_question.num_one, target: true).count
+    @my_answer_two = Answer.where(answer_result: @my_question.num_two, target: true).count
+    @my_answer_three = Answer.where(answer_result: @my_question.num_three, target: true).count
+    @my_answer_four = Answer.where(answer_result: @my_question.num_four, target: true).count
+  end
+
   def index
-    @my_questions = Question.where(user_id: current_user.id)
+    @my_target_question = Question.find_by(user_id: current_user.id, target: true)
+    @my_questions = Question.where(user_id: current_user.id, target: false)
     @user = User.find(current_user.id)
-    @my_result = Answer.where(user_id: current_user.id).includes(:question).where
   end
 
   def create

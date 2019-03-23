@@ -9,5 +9,9 @@
   - if @apply_user.present?
     = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn-round cp_btn mt-5"
   .mt-5 = render 'shared/flash_messages'
-  = link_to '質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center"
+  .text-center
+    h5.mb-3 現在トレード中の質問
+    .my_question= simple_format @my_target_question.content
+    = graph_judge_user
+    .mt-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center"
 
