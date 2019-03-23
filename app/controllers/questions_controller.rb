@@ -48,7 +48,7 @@ class QuestionsController < ApplicationController
   end
 
   def trade
-    @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.or(Question.where.not(user_id: current_user).find_other(current_user)).order("RANDOM()").limit(5).uniq
+    @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.or(Question.where.not(user_id: current_user).find_other(current_user)).order("RANDOM()").limit(10).uniq
   end
 
   private

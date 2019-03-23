@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   validates :name, presence: true, null: false, uniqueness: true,
             length: { maximu: 15, minimum: 4 }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validate  :file_validation, if: -> { image.attached? }
   has_secure_password
 

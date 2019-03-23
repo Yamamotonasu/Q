@@ -1,0 +1,9 @@
+= render 'shared/user_profile'
+.col-md-6
+  = render 'shared/error_messages', obj: @user
+  .card.mt-5
+    = form_with model: @user, local: true do |f|
+      .form-group
+        = f.label :name
+        = f.text_field :name, placeholder: "#{@user.name}", class: "form-control"
+      = f.submit "この情報で更新する", class: "btn btn-primary"

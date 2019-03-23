@@ -1,8 +1,4 @@
-.col-md-3
-  .card.mt-5.text-center
-    .pt-5= show_user_image @user
-    h5.my-3.text_g.text-muted = current_user.name
-    = link_to "あなたの投稿した質問", user_questions_path(current_user), class: "word_btn to_index"
+= render 'shared/user_profile'
 .col-md-9
   .tab_wrap
     input#tab1[type="radio" name="tab_btn" checked]
