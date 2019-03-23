@@ -1,16 +1,11 @@
-.show-user
-.col-md-3
-  .card.mt-5.text-center
-    .pt-5= show_user_image @user
-    h5.my-3.text_g.text-muted = current_user.name
-    = link_to "あなたの投稿した質問", user_questions_path(current_user), class: "word_btn to_index"
+= render 'shared/user_profile'
 .col-md-9
   .mt-5 = render 'shared/flash_messages'
   - if @apply_user.present?
-    = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn-round cp_btn mt-5"
+    = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn-round cp_btn mt-5 little-hover"
   .text-center
     h5.mb-3 現在トレード中の質問
     .my_question= simple_format @my_target_question.content
     = graph_judge_user
-    .mt-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center"
+    .mt-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center little-hover"
 
