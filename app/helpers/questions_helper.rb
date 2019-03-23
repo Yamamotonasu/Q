@@ -5,13 +5,10 @@ module QuestionsHelper
       "まだ回答がありません。"
     elsif @my_question.blank?
       pie_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two]], donut: true
-      bar_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two]]
     elsif @my_question.num_three.present?
       pie_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two], [@my_question.num_three, @my_answer_three]], donut: true
-      bar_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two], [@my_question.num_three, @my_answer_three]]
     else
       pie_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two], [@my_question.num_three, @my_answer_three], [@my_question.num_four, @my_answer_four]], donut: true
-      bar_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two], [@my_question.num_three, @my_answer_three], [@my_question.num_four, @my_answer_four]]
     end
   end
 
