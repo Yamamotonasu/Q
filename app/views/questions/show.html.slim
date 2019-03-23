@@ -20,7 +20,7 @@
           = form_with url: "/users/#{current_user.id}/questions/#{@my_question.id}", method: :post, local: true do |f|
             .text-center= f.submit "この質問を有効にする", class: "btn-gradient-3d-simple little-hover"
       .tab_panel#panel3
-        .text-center= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M')
+        .text-center= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M分')
         p.pt-3
           | 総回答数:
           = total_count

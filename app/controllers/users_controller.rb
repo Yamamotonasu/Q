@@ -1,18 +1,21 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :show]
   before_action :correct_user,   only: [:edit, :update]
+  include UsersHelper
 
 
   def show
     @user = User.find(params[:id])
     # トレード希望者を抽出する
-    @apply_user = Relation.where(answered_user_id: current_user.id)
-    # 現在ターゲットになっている質問
-    @my_target_question = Question.find_by(user_id: current_user.id, target: true)
-    @my_answer_one = Answer.where(answer_result: @my_target_question.num_one, target: true).count
-    @my_answer_two = Answer.where(answer_result: @my_target_question.num_two, target: true).count
-    @my_answer_three = Answer.where(answer_result: @my_target_question.num_three, target: true).count
-    @my_answer_four = Answer.where(answer_result: @my_target_question.num_four, target: true).count
+    if has_question?
+      @apply_user = Relation.where(answered_user_id: current_user.id)
+      # 現在ターゲットになっている質問
+      @my_target_question = Question.find_by(user_id: current_user.id, target: true)
+      @my_answer_one = Answer.where(answer_result: @my_target_question.num_one, target: true).count
+      @my_answer_two = Answer.where(answer_result: @my_target_question.num_two, target: true).count
+      @my_answer_three = Answer.where(answer_result: @my_target_question.num_three, target: true).count
+      @my_answer_four = Answer.where(answer_result: @my_target_question.num_four, target: true).count
+    end
   end
 
   def new

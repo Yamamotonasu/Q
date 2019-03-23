@@ -18,4 +18,12 @@ module UsersHelper
       pie_chart [[@my_target_question.num_one, @my_answer_one], [@my_target_question.num_two, @my_answer_two], [@my_target_question.num_three, @my_answer_three], [@my_target_question.num_four, @my_answer_four]], donut: true
     end
   end
+
+  def has_question?
+    if Question.find_by(user_id: current_user.id, target: true)
+      return true
+    else
+      return false
+    end
+  end
 end

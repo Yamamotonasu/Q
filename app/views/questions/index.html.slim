@@ -1,14 +1,20 @@
 = render 'shared/user_profile'
 .col-md-9
   .text-center
-    h5.mt-5 現在トレード中の質問
+    h5.mt-5.text-muted 現在トレード中の質問
     .my_question.little-hover= link_to @my_target_question.content, "/users/#{current_user.id}/questions/#{@my_target_question.id}", class: "text-muted delete-deco"
   - @my_questions.each do |my_question|
     .card.mt-5.question_body.text-center.little-hover
-      = link_to "#{my_question.content}", "/users/#{current_user.id}/questions/#{my_question.id}", class: "card-header text-dark delete-deco"
-      h5.text-muted= my_question.num_one
-      h5.text-muted= my_question.num_two
-      - if my_question.num_three.present?
-        h5.text-muted= my_question.num_three
-      - if my_question.num_four.present?
-        h5.text-muted= my_question.num_four
+      = link_to "/users/#{current_user.id}/questions/#{my_question.id}", class: "card-header text-dark delete-deco" do
+        .card-content
+          = simple_format my_question.content
+          = my_question.created_at.strftime('%m月%d日%H時%M分')
+
+
+
+        / h5.text-muted= my_question.num_one
+        / h5.text-muted= my_question.num_two
+        / - if my_question.num_three.present?
+        /   h5.text-muted= my_question.num_three
+        / - if my_question.num_four.present?
+        /   h5.text-muted= my_question.num_four
