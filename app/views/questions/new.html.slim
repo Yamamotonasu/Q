@@ -1,5 +1,6 @@
-.col-md-6.offset-md-3
-  h2.text-center.my-4 投稿ページ
+/ = render 'shared/user_profile'
+.col-md-8.offset-2
+  h2.text-center.my-4.text-muted 質問を投稿してみよう
   = render 'shared/error_messages', obj: @question
   = form_with model: [@user, @question], url: user_questions_trade_path,  local: true do |f|
     .text-center.card.post-field.mb-5

@@ -5,11 +5,12 @@
     - if @apply_user.present?
       = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn-round cp_btn mt-5 little-hover"
     .text-center
-      h5.mb-3 現在トレード中の質問
+      h5.my-3 現在トレード中の質問
       = link_to "/users/#{current_user.id}/questions/#{@my_target_question.id}", class: "delete-deco" do
         .my_question.text-muted= simple_format @my_target_question.content
       = graph_judge_user
   -else
     p まだ何も投稿した質問がありません。質問を投稿してみませんか？
   .my-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center little-hover"
+  .mb-5= link_to '質問をトレードする', user_questions_trade_path(current_user), class: "cp_btn_blue text-center little-hover"
 

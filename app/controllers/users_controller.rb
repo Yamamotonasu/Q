@@ -24,7 +24,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       log_in @user
       flash[:notice] = "新規登録しました！次に質問を投稿してみませんか？"
@@ -51,7 +50,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :new_image)
+      params.require(:user).permit(:name, :password, :password_confirmation, :new_image, :prefecture, :age, :sex)
     end
 
   # ログイン済みユーザーかどうか確認

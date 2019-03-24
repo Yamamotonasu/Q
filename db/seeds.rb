@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(name: "john", password: "foobarbaz")
-User.create(name: "akari", password: "foobarbaz")
-User.create(name: "yuuki", password: "foobarbaz")
-User.create(name: "nakano", password: "foobarbaz")
-User.create(name: "hori", password: "foobarbaz")
-User.create(name: "yamamoto", password: "foobarbaz")
+User.create(name: "john", password: "foobarbaz", prefecture: "大阪府", age: 27, sex: "男")
+User.create(name: "akari", password: "foobarbaz", prefecture: "京都府", age: 52, sex: "女")
+User.create(name: "yuuki", password: "foobarbaz", prefecture: "滋賀県", age: 14, sex: "女")
+User.create(name: "nakano", password: "foobarbaz", prefecture: "東京都", age: 32, sex: "男")
+User.create(name: "hori", password: "foobarbaz", prefecture: "大阪府", age: 42, sex: "女")
+User.create(name: "yamamoto", password: "foobarbaz", prefecture: "大阪府", age: 61, sex: "男")
 
 Question.create(content: "今日のお昼ご飯は？2", num_one: "焼き肉", num_two: "お寿司", user_id: "2", target: true)
 Question.create(content: "今日の晩ご飯は？3", num_one: "松屋", num_two: "マクド", user_id: "3", target: true)
