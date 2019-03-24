@@ -7,11 +7,14 @@ class RelationsController < ApplicationController
 
   def create
     my_true = Question.find_by(user_id: current_user.id, target: true)
+    your_true = Question.find_by(id: params[:question_id], target: true)
     @answer = Answer.new
     @answer_id = params[:answer_id]
     @answer.attributes = {
-      # 質問に回答した人のuser_id
-      user_id: current_user.id,
+      # 質問者のuser_id
+      user_id: your_true.user_id,
+      # 回答者のuser_id
+      answer_id: current_user.id,
       # 回答結果
       answer_result: params[:choice],
       # 質問者の投稿ID

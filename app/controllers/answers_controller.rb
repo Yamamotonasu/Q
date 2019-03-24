@@ -5,12 +5,14 @@ class AnswersController < ApplicationController
   def create
     # 自分の答えてほしい質問を抽出してanswer_post_id(答えてほしい質問)へ格納する)
     my_true = Question.find_by(user_id: current_user.id, target: true)
-
+    your_true = Question.find_by(id: params[:question_id], target: true)
     @answer = Answer.new
     @answer_id = params[:answer_id]
     @answer.attributes = {
+      # 質問者のuser_id
+      user_id: your_true.user_id,
       # 質問に回答した人のuser_id
-      user_id: current_user.id,
+      answer_id: current_user.id,
       # 回答結果
       answer_result: params[:choice],
       # 質問者の投稿ID
@@ -20,7 +22,6 @@ class AnswersController < ApplicationController
       # お互いの質問がtrueになった時に結果を反映させる為にtrueにする。
       target: true
     }
-    p @answer
     # 質問者のuser_idを抽出する為の処理
     your_answer = Question.find_by(id: params[:question_id], target: true)
     # relationsテーブルに答えてあげた相手のuser_idと自分の質問IDを格納する。

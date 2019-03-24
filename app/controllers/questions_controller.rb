@@ -51,7 +51,18 @@ class QuestionsController < ApplicationController
 
   def trade
     if has_question?
-      @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.or(Question.where.not(user_id: current_user).find_other(current_user)).order("RANDOM()").limit(10).uniq
+      # @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.and(Question.where.not(user_id: current_user)
+      # .find_other(current_user)).order("RANDOM()").limit(10).uniq
+          #自分の直前に投稿したデータのidを取ってくる
+      @target_questions = []
+      qs = Question.where.not(user_id: current_user.id).where(target: true)
+      qs.each do |q|
+        a = q.answers.find_by(answer_id: current_user.id)
+        if a.blank?
+          @target_questions << q
+        end
+      end
+      return @target_questions
     else
       flash[:alert] = "先に質問を投稿してください"
       redirect_to current_user

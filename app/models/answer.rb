@@ -7,6 +7,7 @@
 #  target         :boolean          default(FALSE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  answer_id      :integer
 #  answer_post_id :integer
 #  question_id    :bigint(8)
 #  user_id        :bigint(8)
