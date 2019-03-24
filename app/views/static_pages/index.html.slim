@@ -8,4 +8,4 @@
     = link_to 'ログインする', login_path, class: 'btn-hov'
   - else
     p.mt-5.mb-3.text_g.text-muted #{current_user.name}さん、質問を投稿してみませんか？
-    = link_to '質問を投稿する', "/users/#{current_user.id}/questions/new", class: 'btn-hov'
+    = link_to '質問を投稿する', "/users/#{current_user.id}/questions/new", class: 'btn-hov mt-5'

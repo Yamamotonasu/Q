@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  include UsersHelper
   def new
     @question = Question.new
     @user = User.find(current_user.id)
@@ -49,7 +50,12 @@ class QuestionsController < ApplicationController
   end
 
   def trade
-    @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.or(Question.where.not(user_id: current_user).find_other(current_user)).order("RANDOM()").limit(10).uniq
+    if has_question?
+      @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.or(Question.where.not(user_id: current_user).find_other(current_user)).order("RANDOM()").limit(10).uniq
+    else
+      flash[:alert] = "先に質問を投稿してください"
+      redirect_to current_user
+    end
   end
 
   private
