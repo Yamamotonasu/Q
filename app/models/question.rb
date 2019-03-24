@@ -25,8 +25,8 @@
 
 class Question < ApplicationRecord
   belongs_to :user
-  has_many :answers
-  has_many :relations
+  has_many :answers, dependent: :destroy
+  has_many :relations, dependent: :destroy
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 200 }
   validates :num_one, presence: true, length: { maximum: 50 }

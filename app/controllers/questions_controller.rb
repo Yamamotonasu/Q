@@ -40,6 +40,18 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @question = Question.find(params[:id])
+    if @question.target == true
+      flash[:alert] = "トレード中の質問は削除出来ません。"
+      redirect_to root_path
+    else
+      @question.destroy
+      flash[:alert] = "質問を削除しました"
+      redirect_to root_path
+    end
+  end
+
   def enable
     true_question = Question.find_by(user_id: current_user.id, target: true)
     true_question.update_attribute(:target, false)

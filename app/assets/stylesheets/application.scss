@@ -2,7 +2,6 @@
 
 .text_g {
   text-align: center;
-  text-transform: uppercase;
   font-family: 'Nunito', sans-serif;
   color: transparent;
   letter-spacing: 0.1em;
@@ -65,10 +64,25 @@
   border-bottom: none;
 }
 
+.edit-form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.age_field {
+  width: 10%;
+  margin: 0 auto;
+}
+
+
 
 body {
   font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
   width: 100%;
+  background: #ECE9E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 textarea {
@@ -85,10 +99,10 @@ header {
 
 /* ヘッダー */
 header {
+  border-bottom: 2px solid gainsboro;
   width: 100%;
   .text_logo {
     text-align: center;
-    text-transform: uppercase;
     font-family: 'Nunito', sans-serif;
     color: transparent;
     letter-spacing: 0.1em;
@@ -102,7 +116,6 @@ header {
   }
   .text_g {
       text-align: center;
-      text-transform: uppercase;
       font-family: 'Nunito', sans-serif;
       color: transparent;
       letter-spacing: 0.1em;
@@ -146,6 +159,7 @@ header {
     padding: 50px;
     margin-top: 150px;
     letter-spacing: 2px;
+
   }
   .btn-gradient-3d-simple {
     display: inline-block;

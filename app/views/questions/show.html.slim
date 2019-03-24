@@ -24,4 +24,5 @@
         p.pt-3
           | 総回答数:
           = total_count
+        .text-center= link_to "質問を削除する", "/users/#{current_user.id}/questions/#{@my_question.id}", class: "btn btn-danger", method: :delete, data: { confirm:"質問を削除してもよろしいですか？" }
 
