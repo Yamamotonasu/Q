@@ -15,6 +15,7 @@ ja:
         prefecture: お住まいの地域
         age: 年齢
         sex: 性別
+        charged: 課金ユーザー
       question:
         content: 質問の内容
         num_one: 1

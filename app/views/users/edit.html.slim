@@ -15,4 +15,7 @@
         |(数字のみで入力してください)
         |(必須)
         = f.text_field :age, class: "form-control age_field"
+      .form-group.mt-2
+        = f.label :charged
+        = f.check_box 'charged', {}, checked_value="true", unchecked_value="false"
       .text-center.mb-3= f.submit "この情報で更新する", class: "btn btn-primary"

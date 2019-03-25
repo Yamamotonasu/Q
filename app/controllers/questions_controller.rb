@@ -13,6 +13,17 @@ class QuestionsController < ApplicationController
     @my_answer_two = Answer.where(answer_result: @my_question.num_two, target: true).count
     @my_answer_three = Answer.where(answer_result: @my_question.num_three, target: true).count
     @my_answer_four = Answer.where(answer_result: @my_question.num_four, target: true).count
+
+    # 都道府県別回答者集計用
+    user1 = Answer.where(answer_result: @my_question.num_one, target: true).pluck(:answer_id)
+    user2 = Answer.where(answer_result: @my_question.num_two, target: true).pluck(:answer_id)
+    user3 = Answer.where(answer_result: @my_question.num_three, target: true).pluck(:answer_id) if @my_answer_three != 0
+    user4 = Answer.where(answer_result: @my_question.num_four, target: true).pluck(:answer_id) if @my_answer_four != 0
+    @user1_pref = User.where(id: user1).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
+    @user2_pref = User.where(id: user2).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
+    @user3_pref = User.where(id: user3).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_three != 0
+    @user4_pref = User.where(id: user4).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_four != 0
+
   end
 
   def index

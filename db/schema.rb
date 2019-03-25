@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_24_053943) do
+ActiveRecord::Schema.define(version: 2019_03_24_134142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_053943) do
     t.string "age", null: false
     t.integer "sex", null: false
     t.string "email"
+    t.boolean "charged", default: false, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
