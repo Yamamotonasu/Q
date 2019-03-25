@@ -23,6 +23,7 @@
         -elsif @my_question.target == false
           = form_with url: "/users/#{current_user.id}/questions/#{@my_question.id}", method: :post, local: true do |f|
             .text-center= f.submit "この質問を有効にする", class: "btn-gradient-3d-simple little-hover"
+            p.mt-5 ※質問を有効化するとこの質問がトレードに出されます。(質問は1つしか有効化する事が出来ません。)
       .tab_panel#panel3
         .text-center= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M分')
         p.pt-3
@@ -50,6 +51,15 @@
           - @user4_pref.each do |p, v|
             p= "#{p} : #{v}人"
       .tab_panel#panel5
-        p まだ何もありません。
+        p 1を回答した人の年齢層
+        = age_group_graph(@user1_age)
+        p.mt-3 2を回答した人の年齢層
+        = age_group_graph(@user2_age)
+        - if @my_answer_three != 0
+          p.mt-3 3を回答した人の年齢層
+          = age_group_graph(@user3_age)
+        - if @my_answer_four != 0
+          p.mt-3 4を回答した人の年齢層
+          = age_group_graph(@user4_age)
 
 
