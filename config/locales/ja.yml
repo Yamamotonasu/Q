@@ -12,12 +12,16 @@ ja:
         password: パスワード
         password_confirmation: もう一度パスワードを入力
         new_image: プロフィール画像
+        prefecture: お住まいの地域
+        age: 年齢
+        sex: 性別
+        charged: 課金ユーザー
       question:
         content: 質問の内容
-        num_one: こたえ1
-        num_two: こたえ2
-        num_three: こたえ3
-        num_four: こたえ4
+        num_one: 1
+        num_two: 2
+        num_three: 2
+        num_four: 4
         user_id: ユーザーID
     errors:
       messages:

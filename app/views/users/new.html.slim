@@ -1,20 +1,36 @@
 .container-fluid
   .row
     .signup.col-md-5.col-md-offset-4.text-center
-      h4.my-4 新規登録
+      h4.my-4.text-muted.text_g ユーザー登録
       = form_with model: @user, local: true do |f|
         = render 'shared/error_messages', obj: @user
         .card.mb-5.signup-body
-          .form-group.mt-5
+          .form-group.mt-2
             = f.label :name
+            |(必須)
             = f.text_field :name, class: "form-control"
-          .form-group.mt-5
+          .form-group.mt-2
+            = f.label :prefecture
+            |(必須)
+            = f.select :prefecture, User.prefectures.keys, {prompt: "選択してください"}, class: "form-control"
+          .form-group.mt-2
+            = f.label :age
+            |(数字のみで入力してください)
+            |(必須)
+            = f.text_field :age, class: "form-control age_field"
+          .form-group.mt-2
+            = f.label :sex
+            |(必須)
+            = f.select :sex, [["男", "男"], ["女", "女"]], {prompt: "選択してください"}, class: "form-control"
+          .form-group.mt-2
             = f.label :password
+            |(必須)
             = f.text_field :password, class: "form-control"
-          .form-group.mt-5
+          .form-group.mt-2
             = f.label :password_confirmation
+            |(必須)
             = f.text_field :password_confirmation, class: "form-control"
-          .form_group.mt-3
+          .form_group.mt-2
             = f.label :new_image
             = f.file_field :new_image, class: "form-control"
           =f.submit '新規登録',  class: 'btn-gradient-3d-simple mt-5 mb-5'

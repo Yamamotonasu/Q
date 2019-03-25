@@ -14,7 +14,7 @@ module QuestionsHelper
 
   def column_judge
     if (@my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four) == 0
-      "まだ回答がありません。"
+      return
     elsif @my_question.blank?
       bar_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two]]
     elsif @my_question.num_three.present?

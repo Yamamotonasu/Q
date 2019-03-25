@@ -1,6 +1,6 @@
 .col-md-6.offset-md-3.text-center.top
   .mt-5= render 'shared/flash_messages'
-  p.border.rounded.bg-gradient-primary.describe QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。名前とパスワードを登録するだけで質問を投稿する事が出来ます。
+  p.border.rounded.bg-gradient-primary.describe.bg-white QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。名前とパスワードを登録するだけで質問を投稿する事が出来ます。
   - unless logged_in?
     p.mt-5.text_g.text-muted まだユーザー登録がお済みでない方
     = link_to 'ユーザー登録する', new_user_path, class:'btn-hov'
@@ -8,4 +8,4 @@
     = link_to 'ログインする', login_path, class: 'btn-hov'
   - else
     p.mt-5.mb-3.text_g.text-muted #{current_user.name}さん、質問を投稿してみませんか？
-    = link_to '質問を投稿する', "/users/#{current_user.id}/questions/new", class: 'btn-hov'
+    = link_to '質問を投稿する', "/users/#{current_user.id}/questions/new", class: 'btn-hov mt-5'

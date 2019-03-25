@@ -25,13 +25,13 @@
 
 class Question < ApplicationRecord
   belongs_to :user
-  has_many :answers
-  has_many :relations
+  has_many :answers, dependent: :destroy
+  has_many :relations, dependent: :destroy
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 200 }
   validates :num_one, presence: true, length: { maximum: 50 }
   validates :num_two, presence: true, length: { maximum: 50 }
 
-  scope :find_nil, -> {left_joins(:answers).where(answers: {user_id: nil})}
-  scope :find_other, -> (user) {left_joins(:answers).where.not(answers: {user_id: user.id})}
+  scope :find_nil, -> {left_joins(:answers).where(answers: {answer_id: nil})}
+  scope :find_other, -> (user) {left_joins(:answers).where.not(answers: {answer_id: user.id})}
 end

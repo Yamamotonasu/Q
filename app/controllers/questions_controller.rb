@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
+  include UsersHelper
   def new
     @question = Question.new
+    @user = User.find(current_user.id)
   end
 
   def show
@@ -11,6 +13,17 @@ class QuestionsController < ApplicationController
     @my_answer_two = Answer.where(answer_result: @my_question.num_two, target: true).count
     @my_answer_three = Answer.where(answer_result: @my_question.num_three, target: true).count
     @my_answer_four = Answer.where(answer_result: @my_question.num_four, target: true).count
+
+    # 都道府県別回答者集計用
+    user1 = Answer.where(answer_result: @my_question.num_one, target: true).pluck(:answer_id)
+    user2 = Answer.where(answer_result: @my_question.num_two, target: true).pluck(:answer_id)
+    user3 = Answer.where(answer_result: @my_question.num_three, target: true).pluck(:answer_id) if @my_answer_three != 0
+    user4 = Answer.where(answer_result: @my_question.num_four, target: true).pluck(:answer_id) if @my_answer_four != 0
+    @user1_pref = User.where(id: user1).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
+    @user2_pref = User.where(id: user2).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
+    @user3_pref = User.where(id: user3).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_three != 0
+    @user4_pref = User.where(id: user4).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_four != 0
+
   end
 
   def index
@@ -38,6 +51,18 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @question = Question.find(params[:id])
+    if @question.target == true
+      flash[:alert] = "トレード中の質問は削除出来ません。"
+      redirect_to root_path
+    else
+      @question.destroy
+      flash[:alert] = "質問を削除しました"
+      redirect_to root_path
+    end
+  end
+
   def enable
     true_question = Question.find_by(user_id: current_user.id, target: true)
     true_question.update_attribute(:target, false)
@@ -48,7 +73,23 @@ class QuestionsController < ApplicationController
   end
 
   def trade
-    @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.or(Question.where.not(user_id: current_user).find_other(current_user)).order("RANDOM()").limit(10).uniq
+    if has_question?
+      # @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.and(Question.where.not(user_id: current_user)
+      # .find_other(current_user)).order("RANDOM()").limit(10).uniq
+          #自分の直前に投稿したデータのidを取ってくる
+      @target_questions = []
+      qs = Question.where.not(user_id: current_user.id).where(target: true)
+      qs.each do |q|
+        a = q.answers.find_by(answer_id: current_user.id)
+        if a.blank?
+          @target_questions << q
+        end
+      end
+      return @target_questions
+    else
+      flash[:alert] = "先に質問を投稿してください"
+      redirect_to current_user
+    end
   end
 
   private

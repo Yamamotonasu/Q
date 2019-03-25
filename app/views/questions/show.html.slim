@@ -4,10 +4,12 @@
     input#tab1[type="radio" name="tab_btn" checked]
     input#tab2[type="radio" name="tab_btn"]
     input#tab3[type="radio" name="tab_btn"]
+    input#tab4[type="radio" name="tab_btn"]
     .tab_area
       label.tab1_label[for="tab1"] 集計結果
       label.tab2_label[for="tab2"] 有効化
       label.tab3_label[for="tab3"] 投稿詳細
+      label.tab4_label[for="tab4"] 回答詳細
     .panel_area
       .tab_panel#panel1
         .text-center= simple_format @my_question.content
@@ -20,8 +22,30 @@
           = form_with url: "/users/#{current_user.id}/questions/#{@my_question.id}", method: :post, local: true do |f|
             .text-center= f.submit "この質問を有効にする", class: "btn-gradient-3d-simple little-hover"
       .tab_panel#panel3
-        .text-center= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M')
+        .text-center= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M分')
         p.pt-3
           | 総回答数:
           = total_count
+        .text-center= link_to "質問を削除する", "/users/#{current_user.id}/questions/#{@my_question.id}", class: "btn btn-danger", method: :delete, data: { confirm:"質問を削除してもよろしいですか？" }
+      .tab_panel#panel4
+
+        p 1を回答した人の都道府県
+        -if @user2_pref.blank?
+          p まだ回答した人が居ません。
+        - @user1_pref.each do |p, v|
+          p= "#{p} : #{v}人"
+        p 2を回答した人の都道府県
+        - if @user2_pref.blank?
+          p まだ回答した人が居ません。
+        - @user2_pref.each do |p, v|
+          p= "#{p} : #{v}人"
+        - if @my_answer_three != 0
+          p 3を回答した人の都道府県
+          - @user3_pref.each do |p, v|
+            p= "#{p} : #{v}人"
+        - if @my_answer_four != 0
+          p 4を回答した人の都道府県
+          - @user4_pref.each do |p, v|
+            p= "#{p} : #{v}人"
+
 

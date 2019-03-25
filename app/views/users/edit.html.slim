@@ -1,9 +1,21 @@
 = render 'shared/user_profile'
 .col-md-6
   = render 'shared/error_messages', obj: @user
-  .card.mt-5
+  .card.mt-5.text-center
     = form_with model: @user, local: true do |f|
       .form-group
         = f.label :name
-        = f.text_field :name, placeholder: "#{@user.name}", class: "form-control"
-      = f.submit "この情報で更新する", class: "btn btn-primary"
+        = f.text_field :name, placeholder: "#{@user.name}", class: "form-control edit-form"
+      .form-group.mt-2
+        = f.label :prefecture
+        |(必須)
+        = f.select :prefecture, User.prefectures.keys, {prompt: "選択してください"}, class: "form-control edit-form"
+      .form-group.mt-2
+        = f.label :age
+        |(数字のみで入力してください)
+        |(必須)
+        = f.text_field :age, class: "form-control age_field"
+      .form-group.mt-2
+        = f.label :charged
+        = f.check_box 'charged', {}, checked_value="true", unchecked_value="false"
+      .text-center.mb-3= f.submit "この情報で更新する", class: "btn btn-primary"
