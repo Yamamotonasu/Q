@@ -5,11 +5,13 @@
     input#tab2[type="radio" name="tab_btn"]
     input#tab3[type="radio" name="tab_btn"]
     input#tab4[type="radio" name="tab_btn"]
+    input#tab5[type="radio" name="tab_btn"]
     .tab_area
       label.tab1_label[for="tab1"] 集計結果
       label.tab2_label[for="tab2"] 有効化
       label.tab3_label[for="tab3"] 投稿詳細
-      label.tab4_label[for="tab4"] 回答詳細
+      label.tab4_label[for="tab4"] 回答詳細1
+      label.tab5_label[for="tab5"] 回答詳細2
     .panel_area
       .tab_panel#panel1
         .text-center= simple_format @my_question.content
@@ -47,5 +49,7 @@
           p 4を回答した人の都道府県
           - @user4_pref.each do |p, v|
             p= "#{p} : #{v}人"
+      .tab_panel#panel5
+        p まだ何もありません。
 
 

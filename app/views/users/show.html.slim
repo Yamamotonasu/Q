@@ -1,17 +1,18 @@
 = render 'shared/user_profile'
 .col-md-9
   .mt-5 = render 'shared/flash_messages'
-  - if has_question?
-    - if @apply_user.present?
-      = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn-round cp_btn mt-5 little-hover bg-white"
-    .text-center
-      h5.my-3 現在トレード中の質問
-      = link_to "/users/#{current_user.id}/questions/#{@my_target_question.id}", class: "delete-deco" do
-        .my_question.text-muted= simple_format @my_target_question.content
-      = graph_judge_user
-  -else
-    p.text-center まだ何も投稿した質問がありません。質問を投稿してみませんか？
-  .my-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
-  -if has_question?
-    .mb-5= link_to '質問をトレードする', user_questions_trade_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
+  .card.mb-5.show-area
+    - if has_question?
+      - if @apply_user.present?
+        = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn-round cp_btn mt-5 little-hover bg-white"
+      .text-center
+        h5.my-3 現在トレード中の質問
+        = link_to "/users/#{current_user.id}/questions/#{@my_target_question.id}", class: "delete-deco" do
+          .my_question.text-muted= simple_format @my_target_question.content
+        = graph_judge_user
+    -else
+      p.text-center まだ何も投稿した質問がありません。質問を投稿してみませんか？
+    .my-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
+    -if has_question?
+      .mb-5= link_to '質問をトレードする', user_questions_trade_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
 

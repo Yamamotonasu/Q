@@ -92,6 +92,12 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def other
+    p params[:id]
+    @show_question = Question.find_by(id: params[:id])
+    p @show_question
+  end
+
   private
 
   def question_params

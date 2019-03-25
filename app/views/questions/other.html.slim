@@ -1,0 +1,18 @@
+/ .col-md-6.offset-md-3
+/   .tab_wrap
+/     input#tab1[type="radio" name="tab_btn" checked]
+/     input#tab2[type="radio" name="tab_btn"]
+/     .tab_area
+/       label.tab1_label[for="tab1"] 集計結果
+/       label.tab2_label[for="tab2"] 有効化
+/       .panel_area
+/     .tab_panel#panel1
+/       .text-center= simple_format @my_question.content
+/       .mt-5.text-center= graph_judge
+/       .mt-5.text-center= column_judge
+/     .tab_panel#panel2
+/       -if @my_question.target == true
+/         p この質問は既に有効です。
+/       -elsif @my_question.target == false
+/         = form_with url: "/users/#{current_user.id}/questions/#{@my_question.id}", method: :post, local: true do |f|
+/           .text-center= f.submit "この質問を有効にする", class: "btn-gradient-3d-simple little-hover"

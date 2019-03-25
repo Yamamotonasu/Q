@@ -1,4 +1,4 @@
-.col-md-6.offset-md-3.text-center.top
+.col-md-8.text-center.top
   .mt-5= render 'shared/flash_messages'
   p.border.rounded.bg-gradient-primary.describe.bg-white QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。名前とパスワードを登録するだけで質問を投稿する事が出来ます。
   - unless logged_in?
@@ -9,3 +9,19 @@
   - else
     p.mt-5.mb-3.text_g.text-muted #{current_user.name}さん、質問を投稿してみませんか？
     = link_to '質問を投稿する', "/users/#{current_user.id}/questions/new", class: 'btn-hov mt-5'
+.col-md-4
+  h4.text-center.mt-5.text-muted みんなの最近の質問
+  .card
+    .card.open_view
+      - @view_questions.each do |q|
+        .card.mb-5
+          = link_to other_show_path, class: "delete-deco" do
+            .card-header.little-hover
+              h5.text-dark.text-center= simple_format q.content
+              p.text-muted.text-center= q.created_at.strftime('%m月%d日%H時%M分')
+          .btn.btn-info.btn-top.my-2= q.num_one
+          .btn.btn-info.btn-top.mb-2= q.num_two
+          - if q.num_three.present?
+            .btn.btn-info.btn-top.mb-2= q.num_three
+          - if q.num_four.present?
+            .btn.btn-info.btn-top.mb-2= q.num_four

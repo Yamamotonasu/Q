@@ -154,12 +154,13 @@ header {
 /* トップ画面 */
 
 .top {
-  height: 600px;
   .describe {
     padding: 50px;
     margin-top: 150px;
     letter-spacing: 2px;
-
+  }
+  .open_view {
+    width: 80%;
   }
   .btn-gradient-3d-simple {
     display: inline-block;
@@ -443,6 +444,11 @@ header {
   background: #d7e9ea;
 }
 
+.show-area {
+  width: 80%;
+  margin: 0 auto
+}
+
 
 /* 投稿詳細画面 */
 @keyframes tabAnim{
@@ -539,6 +545,17 @@ input[type="radio"]{display:none;}
 }
 
 #tab4:checked ~ .panel_area #panel4{
+  display:block;
+  animation:tabAnim ease 0.6s forwards;
+  -ms-animation:tabAnim ease 0.6s forwards;
+}
+
+#tab5:checked ~ .tab_area .tab5_label{
+  background:#67ceff;
+  color:#000;
+}
+
+#tab5:checked ~ .panel_area #panel5{
   display:block;
   animation:tabAnim ease 0.6s forwards;
   -ms-animation:tabAnim ease 0.6s forwards;
