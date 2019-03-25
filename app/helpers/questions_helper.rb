@@ -27,4 +27,21 @@ module QuestionsHelper
   def total_count
     @my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four
   end
+
+  # 年齢の配列を返すと[10台,20台,30台,40台,50台,60台,70台,80歳以上]の値の数で配列を返す
+  def count_age(age)
+    [age.select{ |x| x.to_i.between?(10,19) }.count,
+     age.select{ |x| x.to_i.between?(20,29) }.count,
+     age.select{ |x| x.to_i.between?(30,39) }.count,
+     age.select{ |x| x.to_i.between?(40,49) }.count,
+     age.select{ |x| x.to_i.between?(50,59) }.count,
+     age.select{ |x| x.to_i.between?(60,69) }.count,
+     age.select{ |x| x.to_i.between?(70,79) }.count,
+     age.select{ |x| x.to_i >= 80 }.count]
+  end
+
+  # 年齢層の配列を渡すと配列を返す
+  def age_group_graph(age_group)
+    pie_chart [["10台", age_group[0]], ["20台", age_group[1]], ["30台", age_group[2]], ["40台", age_group[3]], ["50台", age_group[4]], ["60台", age_group[5]], ["70台", age_group[6]], ["80歳以上", age_group[7]]]
+  end
 end
