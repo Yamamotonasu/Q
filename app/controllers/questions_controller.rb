@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   include QuestionsHelper
   def new
     @question = Question.new
-    @user = User.find(current_user.id)
+    @user = User.find_by(id: current_user.id)
   end
 
   def show

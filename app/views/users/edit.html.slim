@@ -18,4 +18,7 @@
       .form-group.mt-2
         = f.label :charged
         = f.check_box 'charged', {}, checked_value="true", unchecked_value="false"
-      .text-center.mb-3= f.submit "この情報で更新する", class: "btn btn-primary"
+      .form_group.mt-2
+        = f.label :new_image
+        = f.file_field :new_image, class: "form-control"
+      .text-center.my-3= f.submit "この情報で更新する", class: "btn btn-primary"
