@@ -6,12 +6,14 @@
     input#tab3[type="radio" name="tab_btn"]
     input#tab4[type="radio" name="tab_btn"]
     input#tab5[type="radio" name="tab_btn"]
+    input#tab6[type="radio" name="tab_btn"]
     .tab_area
       label.tab1_label[for="tab1"] 集計結果
       label.tab2_label[for="tab2"] 有効化
       label.tab3_label[for="tab3"] 投稿詳細
       label.tab4_label[for="tab4"] 回答詳細1
       label.tab5_label[for="tab5"] 回答詳細2
+      label.tab6_label[for="tab6"] 回答詳細3
     .panel_area
       .tab_panel#panel1
         .text-center= simple_format @my_question.content
@@ -31,35 +33,83 @@
           = total_count
         .text-center= link_to "質問を削除する", "/users/#{current_user.id}/questions/#{@my_question.id}", class: "btn btn-danger", method: :delete, data: { confirm:"質問を削除してもよろしいですか？" }
       .tab_panel#panel4
-
-        p 1を回答した人の都道府県
-        -if @user2_pref.blank?
-          p まだ回答した人が居ません。
-        - @user1_pref.each do |p, v|
-          p= "#{p} : #{v}人"
-        p 2を回答した人の都道府県
-        - if @user2_pref.blank?
-          p まだ回答した人が居ません。
-        - @user2_pref.each do |p, v|
-          p= "#{p} : #{v}人"
-        - if @my_answer_three != 0
-          p 3を回答した人の都道府県
-          - @user3_pref.each do |p, v|
-            p= "#{p} : #{v}人"
-        - if @my_answer_four != 0
-          p 4を回答した人の都道府県
-          - @user4_pref.each do |p, v|
-            p= "#{p} : #{v}人"
+        - if @user.charged == true
+          p.text-info 1を回答した人の都道府県
+          - if @user1_pref.blank?
+            p まだ回答した人が居ません。
+          - else
+            - @user1_pref.each do |p, v|
+              p= "#{p} : #{v}人"
+          p.text-danger 2を回答した人の都道府県
+          - if @user2_pref.blank?
+            p まだ回答した人が居ません。
+          - else
+            - @user2_pref.each do |p, v|
+              p= "#{p} : #{v}人"
+          - if @my_answer_three != 0
+            p.text-warning 3を回答した人の都道府県
+            - @user3_pref.each do |p, v|
+              p= "#{p} : #{v}人"
+          - if @my_answer_four != 0
+            p.text-success 4を回答した人の都道府県
+            - @user4_pref.each do |p, v|
+              p= "#{p} : #{v}人"
+        - else
+          p 有料ユーザーのみ回答者の都道府県を見る事が出来ます。
       .tab_panel#panel5
-        p 1を回答した人の年齢層
-        = age_group_graph(@user1_age)
-        p.mt-3 2を回答した人の年齢層
-        = age_group_graph(@user2_age)
-        - if @my_answer_three != 0
-          p.mt-3 3を回答した人の年齢層
-          = age_group_graph(@user3_age)
-        - if @my_answer_four != 0
-          p.mt-3 4を回答した人の年齢層
-          = age_group_graph(@user4_age)
-
+        - if @user.charged == true
+          p.text-info 1を回答した人の年齢層
+          = age_group_graph(@user1_age)
+          p.text-danger.mt-3 2を回答した人の年齢層
+          = age_group_graph(@user2_age)
+          - if @my_answer_three != 0
+            p.text-warning.mt-3 3を回答した人の年齢層
+            = age_group_graph(@user3_age)
+          - if @my_answer_four != 0
+            p.text-success.mt-3 4を回答した人の年齢層
+            = age_group_graph(@user4_age)
+        - else
+          p 有料ユーザーのみ回答者の年齢層を見る事が出来ます。
+      .tab_panel#panel6
+        - if @user.charged == true
+          p.text-info 1を回答した人の性別
+          p
+            | 男性 :
+            = @user1_sex[0]
+            | 人
+          p
+            | 女性 :
+            = @user1_sex[1]
+            | 人
+          p.text-danger 2を回答した人の性別
+          p
+            | 男性 :
+            = @user2_sex[0]
+            | 人
+          p
+            | 女性 :
+            = @user2_sex[1]
+            | 人
+          - if @my_answer_three != 0
+            p.text-warning 3を回答した人の性別
+            p
+              | 男性 :
+              = @user3_sex[0]
+              | 人
+            p
+              | 女性 :
+              = @user3_sex[1]
+              | 人
+          - if @my_answer_four != 0
+            p.text-success 4を回答した人の性別
+            p
+              | 男性 :
+              = @user4_sex[0]
+              | 人
+            p
+              | 女性 :
+              = @user4_sex[1]
+              | 人
+        - else
+          p 有料ユーザーのみ回答者の性別を見る事が出来ます。
 

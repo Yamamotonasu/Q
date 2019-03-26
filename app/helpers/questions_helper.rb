@@ -40,8 +40,16 @@ module QuestionsHelper
      age.select{ |x| x.to_i >= 80 }.count]
   end
 
-  # 年齢層の配列を渡すと配列を返す
+  # 年齢層の配列を渡すとチャートを返す
   def age_group_graph(age_group)
     pie_chart [["10台", age_group[0]], ["20台", age_group[1]], ["30台", age_group[2]], ["40台", age_group[3]], ["50台", age_group[4]], ["60台", age_group[5]], ["70台", age_group[6]], ["80歳以上", age_group[7]]]
+  end
+
+  # 回答者の性別の配列を渡すとチャートを返す
+  def sex_group_graph(sex)
+    man = sex.count("男")
+    women = sex.count("女")
+    [man, women]
+    # pie_chart [["男性", man], ["女性", women]]
   end
 end

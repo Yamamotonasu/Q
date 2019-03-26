@@ -3,7 +3,7 @@
   h2.text-center.my-4.text-muted 質問を投稿してみよう
   = render 'shared/error_messages', obj: @question
   = form_with model: [@user, @question], url: user_questions_trade_path,  local: true do |f|
-    .text-center.card.post-field.mb-5
+    .text-center.card.post-field.mb-5.border-light
       .form-group
         = f.label :content
         = f.text_area :content, rows: 7, class: "form-control"
