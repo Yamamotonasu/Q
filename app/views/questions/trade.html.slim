@@ -2,4 +2,5 @@
   .mt-5 = render 'shared/flash_messages'
   h3.text-center.result.card.mb-5 #{@target_questions.count}件の質問が見つかりました。
   = render 'shared/trade_form'
-  = link_to "あなたのページへ戻る", current_user , class: "btn btn-primary btn-block mb-5"
+  .text-center= link_to 'もう一度質問を探す', user_questions_trade_path, class: "btn btn-outline-success"
+  .text-center= link_to "あなたのページへ戻る", current_user , class: "btn btn-outline-info btn-block my-5"

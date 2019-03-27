@@ -4,9 +4,9 @@
       .card-header= simple_format targets.content
       = f.hidden_field '', name: "question_id", value: targets.id
       = f.hidden_field '', name: "answer_id", value: i
-      = f.submit "#{targets.num_one}", class: "btn-flat-double-border my-3", name: "choice", disable_with: "回答中・・・"
-      = f.submit "#{targets.num_two}", class: "btn-flat-double-border mb-3", name: "choice", disable_with: "回答中・・・"
+      = f.submit "#{targets.num_one}", class: "btn-flat-double-border my-3", name: "choice", data: { disable_with: "回答中・・・" }
+      = f.submit "#{targets.num_two}", class: "btn-flat-double-border mb-3", name: "choice", data: { disable_with: "回答中・・・" }
       -if targets.num_three.present?
-        = f.submit "#{targets.num_three}", class: "btn-flat-double-border mb-3", name: "choice", disable_with: "回答中・・・"
+        = f.submit "#{targets.num_three}", class: "btn-flat-double-border mb-3", name: "choice", data: { disable_with: "回答中・・・" }
       -if targets.num_four.present?
-        = f.submit "#{targets.num_four}", class:"btn-flat-double-border mb-3", name: "choice", disable_with: "回答中・・・"
+        = f.submit "#{targets.num_four}", class:"btn-flat-double-border mb-3", name: "choice", data: { disable_with: "回答中・・・" }

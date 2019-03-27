@@ -1,22 +1,29 @@
 / = render 'shared/user_profile'
-.col-md-6.offset-3
+.col-md-6.offset-md-3
   h2.text-center.my-4.text-muted 質問を投稿してみよう
   = render 'shared/error_messages', obj: @question
+  .text-center
+    button.btn.btn-outline-success.my-3#button ランダムで質問を生成する
   = form_with model: [@user, @question], url: user_questions_trade_path,  local: true do |f|
-    .text-center.card.post-field.mb-5
+    .text-center.card.post-field.mb-5.border-light
       .form-group
         = f.label :content
-        = f.text_area :content, rows: 7, class: "form-control"
+        = f.text_area :content, rows: 7, class: "form-control", id: "content"
+        small.text-muted.form-text 質問は200文字までです。
       .form-group.mt-3
         = f.label :num_one
         = f.text_field :num_one, class: "form-control choice"
+        small.text-muted.form-text 入力必須です。
       .form-group.mt-3
         = f.label :num_two
         = f.text_field :num_two, class: "form-control choice"
+        small.text-muted.form-text 入力必須です。
       .form-group.mt-3
         = f.label :num_three
         = f.text_field :num_three, class: "form-control choice"
+        small.text-muted.form-text 2択の場合は何も入力しないでください。
       .form-group.mt-3.mb-4
         = f.label :num_four
         = f.text_field :num_four, class: "form-control choice"
-      = f.submit "この内容で投稿する", class: "btn btn-primary"
+        small.text-muted.form-text 3択の場合は何も入力しないでください。
+      = f.submit "この内容で投稿する", class: "btn btn-outline-info", data: { disable_with: "送信中・・・" }

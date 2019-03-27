@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   include QuestionsHelper
   def new
     @question = Question.new
-    @user = User.find(current_user.id)
+    @user = User.find_by(id: current_user.id)
   end
 
   def show
@@ -25,15 +25,28 @@ class QuestionsController < ApplicationController
     @user3_pref = User.where(id: user3).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_three != 0
     @user4_pref = User.where(id: user4).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_four != 0
 
-    # 年齢層と男女比
+    # 年齢層
     choice1_age = User.where(id: user1).pluck(:age)
     choice2_age = User.where(id: user2).pluck(:age)
-    choice3_age = User.where(id: user3).pluck(:age)
-    choice4_age = User.where(id: user4).pluck(:age)
+    choice3_age = User.where(id: user3).pluck(:age) if @my_answer_three != 0
+    choice4_age = User.where(id: user4).pluck(:age) if @my_answer_four != 0
     @user1_age = count_age(choice1_age)
     @user2_age = count_age(choice2_age)
-    @user3_age = count_age(choice3_age)
-    @user4_age = count_age(choice4_age)
+    @user3_age = count_age(choice3_age) if @my_answer_three != 0
+    @user4_age = count_age(choice4_age) if @my_answer_four != 0
+
+    # 性別
+    choice_sex1 = User.where(id: user1).pluck(:sex)
+    choice_sex2 = User.where(id: user2).pluck(:sex)
+    choice_sex3 = User.where(id: user3).pluck(:sex) if @my_answer_three != 0
+    choice_sex4 = User.where(id: user4).pluck(:sex) if @my_answer_four != 0
+    @user1_sex = sex_group_graph(choice_sex1)
+    @user2_sex = sex_group_graph(choice_sex2)
+    @user3_sex = sex_group_graph(choice_sex3) if @my_answer_three != 0
+    @user4_sex = sex_group_graph(choice_sex4) if @my_answer_four != 0
+
+
+
   end
 
   def index
@@ -103,9 +116,11 @@ class QuestionsController < ApplicationController
   end
 
   def other
-    p params[:id]
-    @show_question = Question.find_by(id: params[:id])
-    p @show_question
+    @my_question = Question.find_by(id: params[:ques])
+    @my_answer_one = Answer.where(answer_result: @my_question.num_one, target: true).count
+    @my_answer_two = Answer.where(answer_result: @my_question.num_two, target: true).count
+    @my_answer_three = Answer.where(answer_result: @my_question.num_three, target: true).count
+    @my_answer_four = Answer.where(answer_result: @my_question.num_four, target: true).count
   end
 
   private

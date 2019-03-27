@@ -1,6 +1,6 @@
 .col-md-7.offset-md-1.text-center.top
   .mt-5= render 'shared/flash_messages'
-  p.border.rounded.bg-gradient-primary.describe.bg-white QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。名前とパスワードを登録するだけで質問を投稿する事が出来ます。
+  p.border.rounded.bg-gradient-primary.describe.bg-white.border-light QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。名前とパスワードを登録するだけで質問を投稿する事が出来ます。
   - unless logged_in?
     p.mt-5.text_g.text-muted まだユーザー登録がお済みでない方
     = link_to 'ユーザー登録する', new_user_path, class:'btn-hov'
@@ -12,10 +12,10 @@
 .col-md-3
   h4.text-center.mt-5.text-muted みんなの最近の質問
   .card.mb-5
-    .card.open_view
+    .card.open_view.border-light
       - @view_questions.each do |q|
         .card.mb-5
-          = link_to other_show_path, class: "delete-deco" do
+          = link_to other_show_path(ques: q.id),  class: "delete-deco" do
             .card-header.little-hover
               h5.text-dark.text-center= simple_format q.content
               p.text-muted.text-center= q.created_at.strftime('%m月%d日%H時%M分')

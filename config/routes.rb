@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'answers/result'
   root 'static_pages#index'
   get '/users/new', to: 'users#new'
-  get '/other_show', to: 'questions#other.html.slim'
+  get '/other_show', to: 'questions#other'
   resources :users do
     get '/apply_trade', to: 'relations#apply'
     post '/apply_trade', to: 'relations#create'
