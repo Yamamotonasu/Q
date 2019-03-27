@@ -20,10 +20,15 @@ class QuestionsController < ApplicationController
     user2 = Answer.where(answer_result: @my_question.num_two, target: true).pluck(:answer_id)
     user3 = Answer.where(answer_result: @my_question.num_three, target: true).pluck(:answer_id) if @my_answer_three != 0
     user4 = Answer.where(answer_result: @my_question.num_four, target: true).pluck(:answer_id) if @my_answer_four != 0
-    @user1_pref = User.where(id: user1).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
-    @user2_pref = User.where(id: user2).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
-    @user3_pref = User.where(id: user3).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_three != 0
-    @user4_pref = User.where(id: user4).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_four != 0
+    # @user1_pref = User.where(id: user1).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
+    # @user2_pref = User.where(id: user2).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
+    # @user3_pref = User.where(id: user3).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_three != 0
+    # @user4_pref = User.where(id: user4).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 } if @my_answer_four != 0
+    @user1_pref = count_prefecture(@my_question, 1)
+    @user2_pref = count_prefecture(@my_question, 2)
+    @user3_pref = count_prefecture(@my_question, 3) if @my_answer_three != 0
+    @user4_pref = count_prefecture(@my_question, 4) if @my_answer_four != 0
+
 
     # 年齢層
     choice1_age = User.where(id: user1).pluck(:age)
@@ -44,8 +49,6 @@ class QuestionsController < ApplicationController
     @user2_sex = sex_group_graph(choice_sex2)
     @user3_sex = sex_group_graph(choice_sex3) if @my_answer_three != 0
     @user4_sex = sex_group_graph(choice_sex4) if @my_answer_four != 0
-
-
 
   end
 

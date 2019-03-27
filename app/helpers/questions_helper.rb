@@ -1,5 +1,15 @@
 module QuestionsHelper
 
+  # 質問のインスタンスを第一引数に、第二引数に回答番号を渡すと回答者の都道府県別の回答人数を得られる (例) {"大阪府": 2, "東京都", 1}
+  def count_prefecture(question, i)
+    user_id = Answer.where(answer_result: question.num_one, target: true).pluck(:answer_id) if i == 1
+    user_id = Answer.where(answer_result: question.num_two, target: true).pluck(:answer_id) if i == 2
+    user_id = Answer.where(answer_result: question.num_three, target: true).pluck(:answer_id) if i == 3
+    user_id = Answer.where(answer_result: question.num_four, target: true).pluck(:answer_id) if i == 4
+
+    User.where(id: user_id).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
+  end
+
   def graph_judge
     if (@my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four) == 0
       "まだ回答がありません。"
