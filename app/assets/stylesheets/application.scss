@@ -1,4 +1,6 @@
 @import 'bootstrap';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 .text_g {
   text-align: center;
@@ -76,6 +78,10 @@
 
 .input_shadow {
   border_radius: 5px;
+}
+
+.my-orange {
+  color: gold;
 }
 
 body {

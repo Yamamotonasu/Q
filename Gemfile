@@ -36,7 +36,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'rails-i18n', '~> 5.1'
-gem "chartkick"
+# チャート用
+gem 'chartkick'
+# icon用
+gem 'font-awesome-sass', '~> 5.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
