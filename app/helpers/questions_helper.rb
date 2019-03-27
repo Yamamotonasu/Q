@@ -1,5 +1,15 @@
 module QuestionsHelper
 
+  # 質問のインスタンスを第一引数に、第二引数に回答番号を渡すと回答者の都道府県別の回答人数を得られる (例) {"大阪府": 2, "東京都", 1}
+  def count_prefecture(question, i)
+    user_id = Answer.where(answer_result: question.num_one, target: true).pluck(:answer_id) if i == 1
+    user_id = Answer.where(answer_result: question.num_two, target: true).pluck(:answer_id) if i == 2
+    user_id = Answer.where(answer_result: question.num_three, target: true).pluck(:answer_id) if i == 3
+    user_id = Answer.where(answer_result: question.num_four, target: true).pluck(:answer_id) if i == 4
+
+    User.where(id: user_id).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
+  end
+
   def graph_judge
     if (@my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four) == 0
       "まだ回答がありません。"
@@ -28,8 +38,21 @@ module QuestionsHelper
     @my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four
   end
 
-  # 年齢の配列を返すと[10台,20台,30台,40台,50台,60台,70台,80歳以上]の値の数で配列を返す
-  def count_age(age)
+  # 質問のインスタンスと回答番号を返すと[10台,20台,30台,40台,50台,60台,70台,80歳以上]の値の数で配列を返す
+  def count_age(question, i)
+    user = case i
+           when 1
+             Answer.where(answer_result: question.num_one, target: true).pluck(:answer_id)
+           when 2
+             Answer.where(answer_result: question.num_two, target: true).pluck(:answer_id)
+           when 3
+             Answer.where(answer_result: question.num_three, target: true).pluck(:answer_id)
+           when 4
+             Answer.where(answer_result: question.num_four, target: true).pluck(:answer_id)
+           end
+
+    age = User.where(id: user).pluck(:age)
+
     [age.select{ |x| x.to_i.between?(10,19) }.count,
      age.select{ |x| x.to_i.between?(20,29) }.count,
      age.select{ |x| x.to_i.between?(30,39) }.count,
@@ -38,6 +61,22 @@ module QuestionsHelper
      age.select{ |x| x.to_i.between?(60,69) }.count,
      age.select{ |x| x.to_i.between?(70,79) }.count,
      age.select{ |x| x.to_i >= 80 }.count]
+  end
+
+  # 質問のインスタンスと回答番号を引数に取ると性別の配列が帰ってくる (例) ["男","女","男","男"....]
+  def count_sex(question, i)
+    user = case i
+           when 1
+             Answer.where(answer_result: question.num_one, target: true).pluck(:answer_id)
+           when 2
+             Answer.where(answer_result: question.num_two, target: true).pluck(:answer_id)
+           when 3
+             Answer.where(answer_result: question.num_three, target: true).pluck(:answer_id)
+           when 4
+             Answer.where(answer_result: question.num_four, target: true).pluck(:answer_id)
+           end
+    sex = User.where(id: user).pluck(:sex)
+    sex_group_graph(sex)
   end
 
   # 年齢層の配列を渡すとチャートを返す
@@ -50,6 +89,6 @@ module QuestionsHelper
     man = sex.count("男")
     women = sex.count("女")
     [man, women]
-    # pie_chart [["男性", man], ["女性", women]]
+    # pie_chart [["男性", man], ["女性", women]] #何故かpie_chartが帰ってこない
   end
 end
