@@ -10,32 +10,28 @@ module QuestionsHelper
     User.where(id: user_id).pluck(:prefecture).group_by(&:itself).map{ |k, v| [k, v.count] }.to_h.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
   end
 
-  def graph_judge
-    if (@my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four) == 0
+  def graph_judgement(question, one, two, three, four)
+    if (one + two + three + four) == 0
       "まだ回答がありません。"
-    elsif @my_question.blank?
-      pie_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two]], donut: true
-    elsif @my_question.num_three.present?
-      pie_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two], [@my_question.num_three, @my_answer_three]], donut: true
+    elsif question.blank?
+      pie_chart [[question.num_one, one], [question.num_two, two]], donut: true
+    elsif question.num_three.present?
+      pie_chart [[question.num_one, one], [question.num_two, two], [question.num_three, three]], donut: true
     else
-      pie_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two], [@my_question.num_three, @my_answer_three], [@my_question.num_four, @my_answer_four]], donut: true
+      pie_chart [[question.num_one, one], [question.num_two, two], [question.num_three, three], [question.num_four, four]], donut: true
     end
   end
 
-  def column_judge
-    if (@my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four) == 0
+  def column_judgement(question, one, two, three, four)
+    if (one + two + three + four) == 0
       return
-    elsif @my_question.blank?
-      bar_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two]]
-    elsif @my_question.num_three.present?
-      bar_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two], [@my_question.num_three, @my_answer_three]]
+    elsif question.blank?
+      bar_chart [[question.num_one, one], [question.num_two, two]]
+    elsif question.num_three.present?
+      bar_chart [[question.num_one, one], [question.num_two, two], [question.num_three, three]]
     else
-      bar_chart [[@my_question.num_one, @my_answer_one], [@my_question.num_two, @my_answer_two], [@my_question.num_three, @my_answer_three], [@my_question.num_four, @my_answer_four]]
+      bar_chart [[question.num_one, one], [question.num_two, two], [question.num_three, three], [question.num_four, four]]
     end
-  end
-
-  def total_count
-    @my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four
   end
 
   # 質問のインスタンスと回答番号を返すと[10台,20台,30台,40台,50台,60台,70台,80歳以上]の値の数で配列を返す
