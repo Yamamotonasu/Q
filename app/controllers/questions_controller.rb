@@ -33,12 +33,11 @@ class QuestionsController < ApplicationController
     @user2_sex = count_sex(@my_question, 2)
     @user3_sex = count_sex(@my_question, 3) if @my_answer_three != 0
     @user4_sex = count_sex(@my_question, 4) if @my_answer_four != 0
-
   end
 
   def index
     @my_target_question = Question.find_by(user_id: current_user.id, target: true)
-    @my_questions = Question.where(user_id: current_user.id, target: false)
+    @my_questions = Question.page(params[:page]).per(1).where(user_id: current_user.id, target: false)
     @user = User.find(current_user.id)
   end
 

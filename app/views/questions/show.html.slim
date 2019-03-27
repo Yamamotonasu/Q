@@ -21,7 +21,7 @@
         .mt-5.text-center= column_judge
       .tab_panel#panel2
         -if @my_question.target == true
-          p この質問は既に有効です。
+          p この質問は既にトレードに出されています。
         -elsif @my_question.target == false
           = form_with url: "/users/#{current_user.id}/questions/#{@my_question.id}", method: :post, local: true do |f|
             .text-center= f.submit "この質問を有効にする", class: "btn-gradient-3d-simple little-hover"

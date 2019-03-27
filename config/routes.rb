@@ -10,10 +10,9 @@ Rails.application.routes.draw do
     get '/questions/new', to: 'questions#new'
     get '/questions/trade', to: 'questions#trade'
     post '/questions/trade', to: 'questions#create'
-    # get '/questions/trade', to: 'questions#trade'
     get '/questions/:id', to: 'questions#show'
     post '/questions/:id', to: 'questions#enable'
-    resources :questions
+    resources :questions, only: [:new, :index, :show, :create, :destroy]
   end
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

@@ -11,3 +11,5 @@
         .card-content
           = simple_format my_question.content
           = my_question.created_at.strftime('%m月%d日%H時%M分')
+.col-md-9.offset-md-3
+  = paginate @my_questions
