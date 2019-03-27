@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   include UsersHelper
   include QuestionsHelper
+
   def new
     @question = Question.new
     @user = User.find_by(id: current_user.id)
@@ -20,7 +21,6 @@ class QuestionsController < ApplicationController
     @user2_pref = count_prefecture(@my_question, 2)
     @user3_pref = count_prefecture(@my_question, 3) if @my_answer_three != 0
     @user4_pref = count_prefecture(@my_question, 4) if @my_answer_four != 0
-
 
     # 年齢層
     @user1_age = count_age(@my_question, 1)

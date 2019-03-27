@@ -26,7 +26,7 @@ $(document).ready(function() {
 
 $(document).on('turbolinks:load', function(){
   $("#button").on("click", function() {
-    let questions = ["今日の晩御飯何にしようかな？", "初デートはどこがいい？", "明日は何しようかな？", "どれが好き？",""];
+    let questions = ["今日の晩御飯何にしようかな？", "初デートはどこがいい？", "明日は何しようかな？", "どれが好き？"];
     let target = (questions[Math.floor(Math.random() * questions.length)]);
     $("#content").val(target);
   });
