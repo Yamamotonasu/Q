@@ -40,6 +40,8 @@ gem 'rails-i18n', '~> 5.1'
 gem 'chartkick'
 # icon用
 gem 'font-awesome-sass', '~> 5.2.0'
+# ページネーション
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

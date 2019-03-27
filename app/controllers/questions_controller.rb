@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
 
   def index
     @my_target_question = Question.find_by(user_id: current_user.id, target: true)
-    @my_questions = Question.where(user_id: current_user.id, target: false)
+    @my_questions = Question.page(params[:page]).per(10).where(user_id: current_user.id, target: false)
     @user = User.find(current_user.id)
   end
 
