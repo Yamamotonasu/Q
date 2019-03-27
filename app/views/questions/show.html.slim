@@ -56,6 +56,7 @@
               p= "#{p} : #{v}人"
         - else
           p 有料ユーザーのみ回答者の都道府県を見る事が出来ます。
+          .text-center= link_to "ユーザー情報編集画面はコチラ", edit_user_path(current_user), class: "btn btn-outline-success"
       .tab_panel#panel5
         - if @user.charged == true
           p.text-info 1を回答した人の年齢層
@@ -70,6 +71,7 @@
             = age_group_graph(@user4_age)
         - else
           p 有料ユーザーのみ回答者の年齢層を見る事が出来ます。
+          .text-center= link_to "ユーザー情報編集画面はコチラ", edit_user_path(current_user), class: "btn btn-outline-success"
       .tab_panel#panel6
         - if @user.charged == true
           p.text-info 1を回答した人の性別
@@ -112,4 +114,5 @@
               | 人
         - else
           p 有料ユーザーのみ回答者の性別を見る事が出来ます。
+          .text-center= link_to "ユーザー情報編集画面はコチラ", edit_user_path(current_user), class: "btn btn-outline-success"
 
