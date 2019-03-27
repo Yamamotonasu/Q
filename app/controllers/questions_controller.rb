@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
 
   def index
     @my_target_question = Question.find_by(user_id: current_user.id, target: true)
-    @my_questions = Question.page(params[:page]).per(1).where(user_id: current_user.id, target: false)
+    @my_questions = Question.page(params[:page]).per(10).where(user_id: current_user.id, target: false)
     @user = User.find(current_user.id)
   end
 
@@ -83,9 +83,6 @@ class QuestionsController < ApplicationController
 
   def trade
     if has_question?
-      # @target_questions = Question.where.not(user_id: current_user).where(target: true).find_nil.and(Question.where.not(user_id: current_user)
-      # .find_other(current_user)).order("RANDOM()").limit(10).uniq
-          #自分の直前に投稿したデータのidを取ってくる
       @target_questions = []
       qs = Question.where.not(user_id: current_user.id).where(target: true)
       qs.each do |q|
