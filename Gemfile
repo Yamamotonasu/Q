@@ -36,11 +36,15 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'rails-i18n', '~> 5.1'
-gem "chartkick"
+# チャート用
+gem 'chartkick'
+# icon用
+gem 'font-awesome-sass', '~> 5.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # モデルにスキーマ情報を表示する
   gem 'annotate'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
@@ -57,6 +61,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  #デバッグ用
   gem 'pry-byebug'
 end
 

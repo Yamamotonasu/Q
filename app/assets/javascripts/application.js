@@ -31,3 +31,9 @@ $(document).on('turbolinks:load', function(){
     $("#content").val(target);
   });
 });
+
+$(function() {
+  $('#charge_icon').popover({
+    trigegr: 'hover', // HTMLオプションをtrueにする
+  });
+});
