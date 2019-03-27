@@ -1,6 +1,6 @@
 .col-md-7.offset-md-1.text-center.top
   .mt-5= render 'shared/flash_messages'
-  p.border.rounded.bg-gradient-primary.describe.bg-white.border-light QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。名前とパスワードを登録するだけで質問を投稿する事が出来ます。
+  p.border.rounded.bg-gradient-primary.describe.bg-white.border-light QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。メールアドレス無しでユーザー登録が出来るので気軽に始める事が出来ます。
   - unless logged_in?
     p.mt-5.text_g.text-muted まだユーザー登録がお済みでない方
     = link_to 'ユーザー登録する', new_user_path, class:'btn-hov'
@@ -19,9 +19,9 @@
             .card-header.little-hover
               h5.text-dark.text-center= simple_format q.content
               p.text-muted.text-center= q.created_at.strftime('%m月%d日%H時%M分')
-          .btn.btn-info.btn-top.my-2= q.num_one
-          .btn.btn-info.btn-top.mb-2= q.num_two
+          .btn.btn-outline-info.btn-top.my-2= q.num_one
+          .btn.btn-outline-info.btn-top.mb-2= q.num_two
           - if q.num_three.present?
-            .btn.btn-info.btn-top.mb-2= q.num_three
+            .btn.btn-outline-info.btn-top.mb-2= q.num_three
           - if q.num_four.present?
-            .btn.btn-info.btn-top.mb-2= q.num_four
+            .btn.btn-outline-info.btn-top.mb-2= q.num_four

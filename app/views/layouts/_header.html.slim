@@ -2,6 +2,7 @@ header
   .navbar.navbar-dark.bg-white.navbar-fixed-top
     = link_to 'QueA', root_path, class: 'logo navbar-brand text-muted text_logo'
     ul.nav.navbar-nav.flex-row.justify-content-end
+      li.nav-item= link_to "遊び方", help_path, class: 'nav-link text-muted text_g'
       - if logged_in?
         li.nav-item= link_to "#{current_user.name}", current_user, class: 'nav-link text-muted text_g'
         li.nav-item= link_to "質問投稿", new_user_question_path(current_user), class: 'nav-link text-muted text_g'

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get '/users/new', to: 'users#new'
   get '/other_show', to: 'questions#other'
+  get '/help', to: 'static_pages#help'
   resources :users do
     get '/apply_trade', to: 'relations#apply'
     post '/apply_trade', to: 'relations#create'
