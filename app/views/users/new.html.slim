@@ -4,11 +4,12 @@
       h4.my-4.text-muted.text_g ユーザー登録
       = form_with model: @user, local: true do |f|
         = render 'shared/error_messages', obj: @user
-        .card.mb-5.signup-body
+        .card.mb-5.signup-body.border-light
           .form-group.mt-2
             = f.label :name
             |(必須)
             = f.text_field :name, class: "form-control"
+            small.text-muted.form-text 最低2文字で入力してください。
           .form-group.mt-2
             = f.label :prefecture
             |(必須)
@@ -18,6 +19,7 @@
             |(数字のみで入力してください)
             |(必須)
             = f.text_field :age, class: "form-control age_field"
+            small.text-muted.form-text 入力例「27」
           .form-group.mt-2
             = f.label :sex
             |(必須)
@@ -26,8 +28,10 @@
             = f.label :password
             |(必須)
             = f.text_field :password, class: "form-control"
+            small.text-muted.form-text 最低6文字で入力してください。
           .form-group.mt-2
             = f.label :password_confirmation
             |(必須)
             = f.text_field :password_confirmation, class: "form-control"
-          =f.submit '新規登録',  class: 'btn-gradient-3d-simple mt-5 mb-5'
+            small.text-muted.form-text 上で入力したパスワードをもう一度入力してください。
+          =f.submit '新規登録',  class: 'btn-gradient-3d-simple mt-5 mb-5', data: { disable_with: "送信中・・・" }

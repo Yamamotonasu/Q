@@ -116,9 +116,11 @@ class QuestionsController < ApplicationController
   end
 
   def other
-    p params[:id]
-    @show_question = Question.find_by(id: params[:id])
-    p @show_question
+    @my_question = Question.find_by(id: params[:ques])
+    @my_answer_one = Answer.where(answer_result: @my_question.num_one, target: true).count
+    @my_answer_two = Answer.where(answer_result: @my_question.num_two, target: true).count
+    @my_answer_three = Answer.where(answer_result: @my_question.num_three, target: true).count
+    @my_answer_four = Answer.where(answer_result: @my_question.num_four, target: true).count
   end
 
   private

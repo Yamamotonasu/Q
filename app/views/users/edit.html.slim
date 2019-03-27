@@ -1,7 +1,7 @@
 = render 'shared/user_profile'
-.col-md-6
+.col-md-6.offset-md-1
   = render 'shared/error_messages', obj: @user
-  .card.mt-5.text-center
+  .card.mt-5.text-center.border-light
     = form_with model: @user, local: true do |f|
       .form-group
         = f.label :name
@@ -21,4 +21,4 @@
       .form_group.mt-2
         = f.label :new_image
         = f.file_field :new_image, class: "form-control"
-      .text-center.my-3= f.submit "この情報で更新する", class: "btn btn-primary"
+      .text-center.my-3= f.submit "この情報で更新する", class: "btn btn-outline-info", data: { disable_with: "送信中・・・" }

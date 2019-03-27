@@ -1,7 +1,7 @@
 = render 'shared/user_profile'
 .col-md-9
   .mt-5 = render 'shared/flash_messages'
-  .card.mb-5.show-area
+  .card.mb-5.show-area.border-light
     - if has_question?
       - if @apply_user.present?
         = link_to '質問交換希望相手が居ます！', user_apply_trade_path(current_user), class: "btn-round cp_btn mt-5 little-hover bg-white"

@@ -3,10 +3,10 @@
     .card.mt-5.login-form
       = render 'shared/flash_messages'
       .form-group
-        = f.label :name
+        = f.label t('.name')
         = f.text_field :name, class: 'form-control'
       .form-group
-        = f.label :password
+        = f.label t('.password')
         = f.text_field :password, class: 'form-control'
       .form-group
         = f.label :remember_me, class: "checkbox inline" do

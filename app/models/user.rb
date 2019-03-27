@@ -4,6 +4,7 @@
 #
 #  id              :bigint(8)        not null, primary key
 #  age             :string           not null
+#  charged         :boolean          default(FALSE), not null
 #  email           :string
 #  name            :string           not null
 #  password_digest :string
@@ -21,7 +22,7 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   validates :name, presence: true, null: false, uniqueness: true,
-            length: { maximu: 15, minimum: 4 }
+            length: { maximu: 15, minimum: 2 }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :prefecture, presence: true
   validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 10 }
