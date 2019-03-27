@@ -1,7 +1,4 @@
 class AnswersController < ApplicationController
-  def result
-  end
-
   def create
     # 自分の答えてほしい質問を抽出してanswer_post_id(答えてほしい質問)へ格納する)
     my_true = Question.find_by(user_id: current_user.id, target: true)
