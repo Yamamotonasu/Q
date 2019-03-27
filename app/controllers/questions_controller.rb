@@ -31,14 +31,14 @@ class QuestionsController < ApplicationController
 
 
     # 年齢層
-    choice1_age = User.where(id: user1).pluck(:age)
-    choice2_age = User.where(id: user2).pluck(:age)
-    choice3_age = User.where(id: user3).pluck(:age) if @my_answer_three != 0
-    choice4_age = User.where(id: user4).pluck(:age) if @my_answer_four != 0
-    @user1_age = count_age(choice1_age)
-    @user2_age = count_age(choice2_age)
-    @user3_age = count_age(choice3_age) if @my_answer_three != 0
-    @user4_age = count_age(choice4_age) if @my_answer_four != 0
+    # choice1_age = User.where(id: user1).pluck(:age)
+    # choice2_age = User.where(id: user2).pluck(:age)
+    # choice3_age = User.where(id: user3).pluck(:age) if @my_answer_three != 0
+    # choice4_age = User.where(id: user4).pluck(:age) if @my_answer_four != 0
+    @user1_age = count_age(@my_question, 1)
+    @user2_age = count_age(@my_question, 2)
+    @user3_age = count_age(@my_question, 3) if @my_answer_three != 0
+    @user4_age = count_age(@my_question, 4) if @my_answer_four != 0
 
     # 性別
     choice_sex1 = User.where(id: user1).pluck(:sex)

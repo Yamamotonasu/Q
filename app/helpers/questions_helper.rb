@@ -38,8 +38,21 @@ module QuestionsHelper
     @my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four
   end
 
-  # 年齢の配列を返すと[10台,20台,30台,40台,50台,60台,70台,80歳以上]の値の数で配列を返す
-  def count_age(age)
+  # 質問のインスタンスと回答番号を返すと[10台,20台,30台,40台,50台,60台,70台,80歳以上]の値の数で配列を返す
+  def count_age(question, i)
+    user = case i
+           when 1
+             Answer.where(answer_result: question.num_one, target: true).pluck(:answer_id)
+           when 2
+             Answer.where(answer_result: question.num_two, target: true).pluck(:answer_id)
+           when 3
+             Answer.where(answer_result: question.num_three, target: true).pluck(:answer_id)
+           when 4
+             Answer.where(answer_result: question.num_four, target: true).pluck(:answer_id)
+           end
+
+    age = User.where(id: user).pluck(:age)
+
     [age.select{ |x| x.to_i.between?(10,19) }.count,
      age.select{ |x| x.to_i.between?(20,29) }.count,
      age.select{ |x| x.to_i.between?(30,39) }.count,
