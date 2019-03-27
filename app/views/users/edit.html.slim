@@ -1,7 +1,7 @@
 = render 'shared/user_profile'
 .col-md-6.offset-md-1
   = render 'shared/error_messages', obj: @user
-  .card.mt-5.text-center.border-light
+  .card.my-5.text-center.border-light
     = form_with model: @user, local: true do |f|
       .form-group
         = f.label :name
@@ -26,17 +26,3 @@
       .text-center.my-3= f.submit "この情報で更新する", class: "btn btn-outline-info", data: { disable_with: "送信中・・・" }
       .text-center.mt-5= link_to "アカウントを削除する", user_path(@user), method: :delete, class: "btn btn-outline-danger", data: { confirm: "本当に削除しちゃいますか？" }
       small.text-danger.form-text.mb-5 一度削除したユーザーは二度と復元出来ません。ご注意下さい。
-/ .modal.fade#delete-user
-/   .modal-dialog
-/     .modal-content
-/       .modal-header
-/         h5.modal-title#exampleModalLabel "本当に削除しますか？"
-/         button.close[type="button" data-dismiss="modal" aria-label="Close"]
-/           span[aria-hidden="true"]
-/             | ×
-/       .modal-body モーダルテストです。
-/       .modal-footer
-/         button.btn.btn-secondary[type="button" data-dismiss="modal"]
-/         = link_to "削除する", user_path(current_user), method: :delete, class: "btn btn-outline-danger"
-
-
