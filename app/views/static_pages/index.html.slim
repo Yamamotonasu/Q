@@ -1,7 +1,9 @@
 .col-md-7.offset-md-1.text-center.top
   .mt-5= render 'shared/flash_messages'
-  p.border.rounded.bg-gradient-primary.describe.bg-white.border-light QueAは個人で気軽に質問を投稿出来るサービスです。また、相手の質問に答えて自分の質問に答えてもらう「質問トレード機能」を備えています。メールアドレス無しでユーザー登録が出来るので気軽に始める事が出来ます。
+  p.border.rounded.bg-gradient-primary.describe.bg-white.border-light QueAは個人で気軽に質問を投稿出来、簡単に回答を集める事が出来るサービスです。相手の質問に答えて、自分の質問にも答えてもらう「質問トレード機能」を備えています。メールアドレス無しでユーザー登録が出来るので気軽に始める事が出来ます。
   - unless logged_in?
+    p.mt-5.text_g.text-muted QueAの使い方が分からない方
+    = link_to "遊び方", help_path, class: 'btn-hov'
     p.mt-5.text_g.text-muted まだユーザー登録がお済みでない方
     = link_to 'ユーザー登録する', new_user_path, class:'btn-hov'
     p.mt-5.text_g.text-muted ユーザー登録がお済みの方
@@ -10,7 +12,8 @@
     p.mt-5.mb-3.text_g.text-muted #{current_user.name}さん、質問を投稿してみませんか？
     = link_to '質問を投稿する', "/users/#{current_user.id}/questions/new", class: 'btn-hov mt-5'
 .col-md-3
-  h4.text-center.mt-5.text-muted みんなの最近の質問
+  h3.text-center.mt-5.text-muted みんなの最近の質問
+  small.text-muted.text-center 質問をクリックすると回答結果を見る事が出来ます。
   .card.mb-5
     .card.open_view.border-light
       - @view_questions.each do |q|

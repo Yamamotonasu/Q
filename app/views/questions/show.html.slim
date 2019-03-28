@@ -21,11 +21,11 @@
         .mt-5.text-center= column_judgement(@my_question, @my_answer_one, @my_answer_two, @my_answer_three, @my_answer_four)
       .tab_panel#panel2
         -if @my_question.target == true
-          p この質問は既にトレードに出されています。
+          p この質問は既にトレードに出ています。
         -elsif @my_question.target == false
           = form_with url: "/users/#{current_user.id}/questions/#{@my_question.id}", method: :post, local: true do |f|
             .text-center= f.submit "この質問を有効にする", class: "btn-gradient-3d-simple little-hover"
-            p.mt-5 ※質問を有効化するとこの質問がトレードに出されます。(質問は1つしか有効化する事が出来ません。)
+            p.mt-5 ※質問を有効化するとこの質問がトレードに出されます。(質問は1つしかトレードに出す事が出来ません。)
       .tab_panel#panel3
         .text-center= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M分')
         p.pt-3
@@ -57,6 +57,7 @@
         - else
           p 有料ユーザーのみ回答者の都道府県を見る事が出来ます。
           .text-center= link_to "ユーザー情報編集画面はコチラ", edit_user_path(current_user), class: "btn btn-outline-success"
+          p.my-4 ※現在、課金ユーザーにチェックを入れる事で有料オプションを使える仕様にしています。
       .tab_panel#panel5
         - if @user.charged == true
           p.text-info 1を回答した人の年齢層
@@ -72,6 +73,7 @@
         - else
           p 有料ユーザーのみ回答者の年齢層を見る事が出来ます。
           .text-center= link_to "ユーザー情報編集画面はコチラ", edit_user_path(current_user), class: "btn btn-outline-success"
+          p.my-4 ※現在、課金ユーザーにチェックを入れる事で有料オプションを使える仕様にしています。
       .tab_panel#panel6
         - if @user.charged == true
           p.text-info 1を回答した人の性別
@@ -115,4 +117,5 @@
         - else
           p 有料ユーザーのみ回答者の性別を見る事が出来ます。
           .text-center= link_to "ユーザー情報編集画面はコチラ", edit_user_path(current_user), class: "btn btn-outline-success"
+          p.my-4 ※現在、課金ユーザーにチェックを入れる事で有料オプションを使える仕様にしています。
 
