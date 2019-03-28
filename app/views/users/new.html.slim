@@ -2,6 +2,7 @@
   .row
     .signup.col-md-5.col-md-offset-4.text-center
       h4.my-4.text-muted.text_g ユーザー登録
+      p.text-muted.text-center 全ての登録情報は他ユーザーから閲覧される事はありません。
       = form_with model: @user, local: true do |f|
         = render 'shared/error_messages', obj: @user
         .card.mb-5.signup-body.border-light
@@ -10,7 +11,7 @@
             |(必須)
             = f.text_field :name, class: "form-control"
             small.text-muted.form-text 最低2文字で入力してください。
-            small.text-muted.form-text ※他ユーザーにユーザーネームが見られる事はありません。
+            small.text-muted.form-text ※登録したユーザーネームはログイン時に使用します。
           .form-group.mt-2
             = f.label :prefecture
             |(必須)
