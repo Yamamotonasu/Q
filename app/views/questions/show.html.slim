@@ -1,4 +1,4 @@
-= render 'shared/user_profile'
+= render 'shared/user_profile', user: @user
 .col-md-9
   .tab_wrap
     input#tab1[type="radio" name="tab_btn" checked]
@@ -17,8 +17,8 @@
     .panel_area
       .tab_panel#panel1
         .text-center= simple_format @my_question.content
-        .mt-5.text-center= graph_judge
-        .mt-5.text-center= column_judge
+        .mt-5.text-center= graph_judgement(@my_question, @my_answer_one, @my_answer_two, @my_answer_three, @my_answer_four)
+        .mt-5.text-center= column_judgement(@my_question, @my_answer_one, @my_answer_two, @my_answer_three, @my_answer_four)
       .tab_panel#panel2
         -if @my_question.target == true
           p この質問は既にトレードに出されています。
@@ -30,7 +30,7 @@
         .text-center= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M分')
         p.pt-3
           | 総回答数:
-          = total_count
+          = @my_answer_one + @my_answer_two + @my_answer_three + @my_answer_four
         .text-center= link_to "質問を削除する", "/users/#{current_user.id}/questions/#{@my_question.id}", class: "btn btn-danger", method: :delete, data: { confirm:"質問を削除してもよろしいですか？" }
       .tab_panel#panel4
         - if @user.charged == true

@@ -1,4 +1,4 @@
-= render 'shared/user_profile'
+= render 'shared/user_profile', user: @user
 .col-md-9
   .mt-5 = render 'shared/flash_messages'
   .card.mb-5.show-area.border-light
@@ -9,10 +9,14 @@
         h5.my-3 現在トレード中の質問
         = link_to "/users/#{current_user.id}/questions/#{@my_target_question.id}", class: "delete-deco" do
           .my_question.text-muted= simple_format @my_target_question.content
-        = graph_judge_user
+        small.text-muted ↑から質問の詳細を確認出来ます。
+        .my-4= graph_judge_user
     -else
       p.text-center まだ何も投稿した質問がありません。質問を投稿してみませんか？
-    .my-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
+    .mt-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
+    small.text-muted.text-center.mb-5 ※質問を投稿するとトレードする質問が変更になります。
     -if has_question?
-      .mb-5= link_to '質問をトレードする', user_questions_trade_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
+      = link_to '質問をトレードする', user_questions_trade_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
+      small.text-muted.text-center.mb-5 ※他の人の質問を探す事が出来ます。
+
 

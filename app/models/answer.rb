@@ -26,4 +26,7 @@
 class Answer < ApplicationRecord
   belongs_to :question
   belongs_to :user
+  validates :answer_result, uniqueness: { scope: [:answer_id, :answer_post_id] }
+  validates :target, presence: true
+  validates :answer_result, presence: true
 end

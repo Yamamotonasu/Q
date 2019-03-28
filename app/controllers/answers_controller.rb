@@ -32,5 +32,7 @@ class AnswersController < ApplicationController
     else
       render :template => "/users/#{current_user.id}/questions/trade"
     end
+  rescue
+    redirect_to :back
   end
 end

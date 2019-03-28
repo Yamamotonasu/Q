@@ -1,7 +1,7 @@
 .col-md-3
   .card.mt-5.text-center.little-hover.border-light
-    .pt-5= show_user_image @user
-    - if @user.charged == true
+    .pt-5= show_user_image user
+    - if user.charged == true
       i.fab.fa-quora.fa-2x.my-orange#charge_icon[data-content="有料ユーザーです"]
     h5.my-3.text_g.text-muted= current_user.name
     -if has_question?

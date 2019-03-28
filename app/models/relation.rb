@@ -24,4 +24,5 @@
 class Relation < ApplicationRecord
   validates :question_id, null: false
   belongs_to :question
+  validates :answered_user_id, uniqueness: { scope: [:question_id] }
 end

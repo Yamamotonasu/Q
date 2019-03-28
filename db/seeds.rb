@@ -27,3 +27,4 @@ Question.create(content: "どっちが好き？", num_one: "大阪", num_two: "�
 Question.create(content: "どっちが好き？", num_one: "ダウン", num_two: "コート", user_id: "3")
 Question.create(content: "どの言語が好き？", num_one: "Ruby", num_two: "Python", num_three: "Java", num_four: "Javascript", user_id: "2")
 Question.create(content: "この質問は表示されたら駄目だよ？", num_one: "Ruby on Rails", num_two: "Laravel", user_id: "1", target: true)
+Question.create(content: "初デートはどこがいい？", num_one: "ディズニーランド", num_two: "映画館", num_three: "ユニバ", num_four: "レゴランド", user_id: "7", target: true)
