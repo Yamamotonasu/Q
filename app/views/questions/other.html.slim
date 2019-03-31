@@ -1,6 +1,4 @@
 .col-md-6.offset-md-3
-  .card.border-light.my-5
-    .text-center.text-muted.my-5.my_question= simple_format @my_question.content
-    .text-center.mb-5= graph_judgement(@my_question, @my_answer_one, @my_answer_two, @my_answer_three, @my_answer_four)
-    .text-center.text-muted= @my_question.created_at.strftime('投稿日時: %Y年%m月%d日%H時%M分')
-    p.my-5.text-center.text-muted ※他ユーザーの質問の回答結果の詳細情報(年齢、在住地域、性別)を見る事は出来ません。
+  .card.border-light.mt-5
+    .text-center.text-muted.my-5= simple_format @my_question.content
+    .mb-5= graph_judge

@@ -10,7 +10,7 @@
         = link_to "/users/#{current_user.id}/questions/#{@my_target_question.id}", class: "delete-deco" do
           .my_question.text-muted= simple_format @my_target_question.content
         small.text-muted ↑から質問の詳細を確認出来ます。
-        .my-4= graph_judge_user
+        .my-4= graph_judgement(@my_target_question, @my_answer_one, @my_answer_two, @my_answer_three, @my_answer_four)
     -else
       p.text-center まだ何も投稿した質問がありません。質問を投稿してみませんか？
     .mt-5= link_to '新しい質問を投稿する', new_user_question_path(current_user), class: "cp_btn_blue text-center little-hover bg-white"
