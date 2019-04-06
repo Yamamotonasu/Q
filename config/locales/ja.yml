@@ -20,7 +20,7 @@ ja:
         content: 質問の内容
         num_one: 1
         num_two: 2
-        num_three: 2
+        num_three: 3
         num_four: 4
         user_id: ユーザーID
     errors:

@@ -9,7 +9,12 @@ class QuestionsController < ApplicationController
 
   def show
     @user = User.find_by(id: current_user.id)
+
     @my_question = Question.find_by(id: params[:id])
+    if @my_question.user.id != current_user.id
+      flash[:alert] = "他の人の質問詳細を見る事は出来ません"
+      redirect_to root_path
+    end
     #回答結果を集計する為の処理
     @my_answer_one = Answer.where(answer_result: @my_question.num_one, target: true).count
     @my_answer_two = Answer.where(answer_result: @my_question.num_two, target: true).count

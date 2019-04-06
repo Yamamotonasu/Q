@@ -25,7 +25,7 @@ class User < ApplicationRecord
             length: { maximu: 15, minimum: 2 }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :prefecture, presence: true
-  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 10 }
+  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 10, less_than_or_equal_to: 118 }
   validates :sex, presence: true
   enum prefecture: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
