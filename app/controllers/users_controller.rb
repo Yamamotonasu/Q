@@ -37,6 +37,15 @@ class UsersController < ApplicationController
   end
 
   def update
+    # if @user.image
+    #   begin
+    #     show_user_image(@user)
+    #   rescue
+    #     flash.now[:alert] = "無効な更新です。"
+    #     render 'edit'
+    #     return
+    #   end
+    # end
     if @user.update(user_params)
       flash[:notice] = "情報を更新しました。"
       redirect_to @user

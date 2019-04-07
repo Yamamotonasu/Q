@@ -77,9 +77,11 @@ class User < ApplicationRecord
 
   # ファイルのアップロードサイズのバリデーション
   def file_validation
-    if image.blob.byte_size > 1_000_000
-      file_raise_error('のファイル容量が大きすぎます')
-    elsif !image.blob.content_type.starts_with?('image/')
+    # if image.blob.byte_size > 1_000_000
+    #   image.purge
+    #   file_raise_error('のファイル容量が大きすぎます')
+    if !image?
+      image.purge
       file_raise_error('は、画像以外はアップロード出来ません')
     end
   end
@@ -89,4 +91,18 @@ class User < ApplicationRecord
     errors.add(:avatar, message)
   end
 
+  def validate_image
+    return unless image.attached?
+    if image.blob.byte_size > 10.megabytes
+      image.purge
+      errors.add(:image, I18n.t('errors.messages.file_too_large'))
+    elsif !image?
+      image.purge
+      errors.add(:image, I18n.t('errors.messages.file_type_not_image'))
+    end
+  end
+
+  def image?
+    %w[image/jpg image/jpeg image/gif image/png].include?(image.blob.content_type)
+  end
 end

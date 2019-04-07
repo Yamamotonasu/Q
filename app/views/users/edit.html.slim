@@ -1,5 +1,6 @@
 = render 'shared/user_profile', user: @user
 .col-md-6.offset-md-1
+  = render 'shared/flash_messages'
   = render 'shared/error_messages', obj: @user
   .card.my-5.text-center.border-light
     = form_with model: @user, local: true do |f|
