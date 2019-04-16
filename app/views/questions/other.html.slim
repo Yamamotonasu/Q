@@ -1,4 +1,4 @@
 .col-md-6.offset-md-3
   .card.border-light.mt-5
     .text-center.text-muted.my-5= simple_format @my_question.content
-    .mb-5= graph_judge
+    .mb-5= graph_judgement(@my_question, @my_answer_one, @my_answer_two, @my_answer_three, @my_answer_four)
