@@ -16,8 +16,12 @@
 #
 
 FactoryBot.define do
-  # factory :user do
-  #   name "tester"
-  #   password_digest "testtesttest"
-  # end
+  factory :user do
+    name { "tester" }
+    age { "20" }
+    charged { "true" }
+    prefecture { "大阪府" }
+    sex { "女" }
+    password { "testtesttest" }
+  end
 end
