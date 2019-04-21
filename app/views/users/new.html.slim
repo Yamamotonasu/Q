@@ -29,11 +29,11 @@
           .form-group.mt-2
             = f.label :password
             |(必須)
-            = f.text_field :password, class: "form-control"
+            = f.password_field :password, class: "form-control"
             small.text-muted.form-text 最低6文字で入力してください。
           .form-group.mt-2
             = f.label :password_confirmation
             |(必須)
-            = f.text_field :password_confirmation, class: "form-control"
+            = f.password_field :password_confirmation, class: "form-control"
             small.text-muted.form-text 上で入力したパスワードをもう一度入力してください。
           =f.submit '新規登録',  class: 'btn-gradient-3d-simple mt-5 mb-5', data: { disable_with: "送信中・・・" }
