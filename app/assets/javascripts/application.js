@@ -34,6 +34,13 @@ $(document).on('turbolinks:load', function(){
 
 $(function() {
   $('#charge_icon').popover({
-    trigegr: 'hover', // HTMLオプションをtrueにする
+    trigger: 'hover', // HTMLオプションをtrueにする
   });
+});
+
+$(function() {
+  $('#nav_toggle').click(function(){
+    $('header').toggleClass('open');
+    $('nav').slideToggle(500);
+  })
 });

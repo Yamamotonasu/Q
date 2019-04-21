@@ -1,0 +1,18 @@
+header
+  .navbar.navbar-dark.bg-white.fixed-top
+    = link_to 'QueA', root_path, class: 'logo navbar-brand text-muted text_logo'
+    #nav_toggle
+      div
+        span
+        span
+        span
+    nav
+      ul
+        li.nav-item= link_to "遊び方", help_path, class: 'nav-link text-muted text_g'
+        - if logged_in?
+          li.nav-item= link_to "#{current_user.name}", current_user, class: 'nav-link text-muted text_g'
+          li.nav-item= link_to "質問投稿", new_user_question_path(current_user), class: 'nav-link text-muted text_g'
+          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link text-muted text_g'
+        - else
+          li.nav-item= link_to 'ログイン', login_path, class: 'nav-link text-muted text_g'
+          li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link text-muted text_g'
