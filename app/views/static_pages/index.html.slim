@@ -11,7 +11,7 @@
   - else
     p.mt-5.mb-3.text_g.text-muted #{current_user.name}さん、質問を投稿してみませんか？
     = link_to '質問を投稿する', "/users/#{current_user.id}/questions/new", class: 'btn-hov mt-5'
-.col-md-3
+.col-md-3.visible-lg
   h3.text-center.mt-5.text-muted みんなの最近の質問
   small.text-muted.text-center 質問をクリックすると回答結果を見る事が出来ます。
   .card.mb-5
